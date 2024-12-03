@@ -12,9 +12,10 @@ class OrderRepository implements Interfaces\OrderRepositoryInterface
         return Order::query()->build($dataBuilder)->simplePagination();
     }
 
-    public function updateStatus($status)
+    public function updateStatus(Order $order, $status): void
     {
-        // TODO: Implement updateStatus() method.
+        $order->status = $status;
+        $order->save();
     }
 
     public function getById(int $id): Order

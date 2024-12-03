@@ -11,5 +11,5 @@ interface OrderRepositoryInterface
 
     public function getById(int $id): Order;
 
-    public function updateStatus($status);
+    public function updateStatus(Order $order, $status): void;
 }

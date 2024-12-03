@@ -20,9 +20,7 @@ class ProductController extends Controller
 
     public function index(ProductFilterRequest $request): AnonymousResourceCollection
     {
-        $products = $this->productRepository->get($request);
-
-        return ProductResource::collection($products);
+        return $this->productRepository->get($request);
     }
 
     public function show($id): ProductResource

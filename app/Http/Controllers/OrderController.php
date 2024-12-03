@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Services\Repositories\Interfaces\CartRepositoryInterface;
 use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
 use Illuminate\Http\Request;
@@ -21,9 +22,9 @@ class OrderController extends Controller
         $this->orderRepository = $orderRepository;
     }
 
-    public function index()
+    public function index(OrderRequest $orderRequest)
     {
-
+        return $this->orderRepository->get($orderRequest);
     }
 
     public function updateOrder($id)
