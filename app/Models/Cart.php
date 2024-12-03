@@ -8,10 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Cart extends Model
 {
-    protected $fillable = [
-        'user_id'
-    ];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -21,7 +17,7 @@ class Cart extends Model
     {
         return $this
             ->belongsToMany(Product::class, 'carts_products')
-            ->as('product_cart')
+            ->using(ReservedProduct::class)
             ->withTimestamps()
             ->withPivot([
                 'count',

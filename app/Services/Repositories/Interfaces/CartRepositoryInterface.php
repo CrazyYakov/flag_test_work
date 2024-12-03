@@ -5,9 +5,15 @@ namespace App\Services\Repositories\Interfaces;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
-use App\Services\Repositories\CartDto;
+use Illuminate\Database\Eloquent\Collection;
 
 interface CartRepositoryInterface
 {
-    public function changeCountProductInCart(CartDto $cartDto): void;
+    public function storeProductInCart(Cart $cart, Product $product): void;
+
+    public function removeProductInCart(Cart $cart, Product $product): void;
+
+    public function getCartByUser(User $user): Cart;
+
+    public function getProducts(Cart $cart): Collection;
 }
