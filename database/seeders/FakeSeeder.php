@@ -13,6 +13,7 @@ class FakeSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

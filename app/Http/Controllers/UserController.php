@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\RegistrationRequest;
 use App\Http\Resources\AuthorizationResource;
 use App\Models\User;
 use App\Services\Repositories\Interfaces\UserRepositoryInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,11 +20,11 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function registration(RegistrationRequest $request): Response
+    public function registration(RegistrationRequest $request): JsonResponse
     {
         $user = $this->userRepository->create($request->toArray());
 
-        return response($this->getResponse($user), 201);
+        return response()->json($this->getResponse($user), 201);
     }
 
     public function authorization(AuthorizationRequest $request): AuthorizationResource
