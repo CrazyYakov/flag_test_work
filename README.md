@@ -37,4 +37,4 @@ php artisan test
 * **GET** _/api/orders_ - список заказов
 * **GET** _/api/orders/{id}_ - детальная информация о заказе
 * **GET** _/api/orders/create_ - создать заказ
-``
+
