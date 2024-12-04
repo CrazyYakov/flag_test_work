@@ -20,9 +20,9 @@ class ReservedProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->product->title,
-            'price' => $this->price,
-            'count' => $this->count
+            'title' => $this->title,
+            'price' => $this->reservedProduct->price,
+            'count' => $this->reservedProduct->count
         ];
     }
 }

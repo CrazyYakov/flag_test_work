@@ -2,13 +2,13 @@
 
 namespace App\Builders;
 
-use App\Services\BuilderHelper\CommandBuilder;
+use App\Services\BuilderHelper\CommandBuild;
 use App\Services\BuilderHelper\ConfigBuilder;
 use Illuminate\Database\Eloquent\Builder;
 
 class OrderBuilder extends Builder
 {
-    use CommandBuilder;
+    use CommandBuild;
 
     protected function configBuilder(): ConfigBuilder
     {

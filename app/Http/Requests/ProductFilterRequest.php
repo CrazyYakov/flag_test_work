@@ -21,22 +21,17 @@ class ProductFilterRequest extends FormRequest implements DataBuilderInterface
         ];
     }
 
-    public function getFilterPrice(): ?array
-    {
-        return $this->has('filter_price') ? explode(',', $this->get('filter_price')) : null;
-    }
-
     public function getFilters(): array
     {
         return array_filter([
-            $this->has('filter_price') ? explode(',', $this->get('filter_price')) : null
+            'price' => $this->has('filter_price') ? explode(',', $this->get('filter_price')) : null
         ]);
     }
 
     public function getSorts(): array
     {
         return array_filter([
-            $this->get('sort_price')
+            'price' => $this->get('sort_price')
         ]);
     }
 }

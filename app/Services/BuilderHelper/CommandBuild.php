@@ -5,7 +5,7 @@ namespace App\Services\BuilderHelper;
 use Illuminate\Database\Eloquent\Builder;
 use LogicException;
 
-trait CommandBuilder
+trait CommandBuild
 {
     public function build(DataBuilderInterface $dataBuilder): Builder
     {

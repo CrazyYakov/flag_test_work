@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Order;
+use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
+use App\Services\Repositories\Interfaces\StatusRepositoryInterface;
 use Illuminate\Console\Command;
 
 class CancelOrderCommand extends Command
@@ -24,14 +26,20 @@ class CancelOrderCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): int
+    public function handle(
+        OrderRepositoryInterface  $orderRepository,
+        StatusRepositoryInterface $statusRepository
+    ): int
     {
-        Order::query()
+        $onPaymentStatus = $statusRepository->getOnPaymentStatus();
+        $cancelledStatus = $statusRepository->getCancelledStatus();
+
+        $orders = Order::query()
             ->whereDate('created_at', "<", now()->subMinutes(2))
-            ->whereHas('')
-            ->update([
-                'status'
-            ]);
+            ->whereHas('status', fn($query) => $query->where('id', $onPaymentStatus->getKey()))
+            ->get();
+
+        $orders->map(fn(Order $order) => $orderRepository->updateStatus($order, $cancelledStatus));
 
         return static::SUCCESS;
     }

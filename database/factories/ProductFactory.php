@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PaymentMethod>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class PaymentMethodFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class PaymentMethodFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->title,
+            'price' => fake()->randomFloat(2,400, 9000)
         ];
     }
 }

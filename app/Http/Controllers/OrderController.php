@@ -2,40 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrderRequest;
-use App\Services\Repositories\Interfaces\CartRepositoryInterface;
+use App\Http\Requests\Order\IndexRequest;
+use App\Http\Requests\Order\StoreRequest;
+use App\Http\Resources\Order\StoreResource;
 use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Services\Repositories\Interfaces\PaymentMethodRepositoryInterface;
+use App\Services\Repositories\Interfaces\StatusRepositoryInterface;
+use App\Services\Repositories\Order\OrderData;
 
 class OrderController extends Controller
 {
-    private CartRepositoryInterface $cartRepository;
+    private PaymentMethodRepositoryInterface $paymentMethodRepository;
     private OrderRepositoryInterface $orderRepository;
+    private StatusRepositoryInterface $statusRepository;
 
-    /**
-     * @param CartRepositoryInterface $cartRepository
-     * @param OrderRepositoryInterface $orderRepository
-     */
-    public function __construct(CartRepositoryInterface $cartRepository, OrderRepositoryInterface $orderRepository)
+    public function __construct(
+        PaymentMethodRepositoryInterface $paymentMethodRepository,
+        OrderRepositoryInterface         $orderRepository,
+        StatusRepositoryInterface        $statusRepository
+    )
     {
-        $this->cartRepository = $cartRepository;
+        $this->paymentMethodRepository = $paymentMethodRepository;
         $this->orderRepository = $orderRepository;
+        $this->statusRepository = $statusRepository;
     }
 
-    public function index(OrderRequest $orderRequest)
+    public function index(IndexRequest $orderRequest)
     {
         return $this->orderRepository->get($orderRequest);
     }
 
-    public function updateOrder($id)
+    public function show(int $id): StoreResource
     {
+        $order = $this->orderRepository->getById($id);
 
+        return new StoreResource($order);
     }
 
-    public function payCart(Request $request)
+    public function store(StoreRequest $request): StoreResource
     {
-        $cart = $this->cartRepository->getCartByUser($request->user());
+        $paymentMethodId = $request->json('data.payment_method_id');
 
+        $paymentMethod = $this->paymentMethodRepository->getById($paymentMethodId);
 
+        $createOrder = new OrderData(
+            paymentMethod: $paymentMethod,
+            user: $request->user(),
+            status: $this->statusRepository->getOnPaymentStatus()
+        );
+
+        $order = $this->orderRepository->create($createOrder);
+
+        return new StoreResource($order);
     }
 }

@@ -34,7 +34,7 @@ class ConfigBuilder
 
     public function getMethodFilter($key): string
     {
-        if (array_key_exists($key, $this->configFilter)) {
+        if (! array_key_exists($key, $this->configFilter)) {
             throw new OutOfRangeException("Method filter By [$key] not found");
         }
 
@@ -43,8 +43,8 @@ class ConfigBuilder
 
     public function getMethodOrder($key): string
     {
-        if (array_key_exists($key, $this->configOrder)) {
-            throw new OutOfRangeException("Method order By [$key] not found");
+        if (! array_key_exists($key, $this->configOrder)) {
+            throw new OutOfRangeException("Method order [$key] not found");
         }
 
         return $this->configOrder[$key];
@@ -54,12 +54,12 @@ class ConfigBuilder
     {
         Arr::map(
             $dataBuilder->getFilters(),
-            fn($value, $key) => call_user_func([$builder, $this->getMethodFilter($key), $value])
+            fn($value, $key) => call_user_func([$builder, $this->getMethodFilter($key)], $value)
         );
 
         Arr::map(
             $dataBuilder->getSorts(),
-            fn($value, $key) => call_user_func([$builder, $this->getMethodOrder($key), $value])
+            fn($value, $key) => call_user_func([$builder, $this->getMethodOrder($key)], $value)
         );
 
         return $builder;

@@ -5,7 +5,6 @@ namespace App\Services\Repositories\Interfaces;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 
 interface CartRepositoryInterface
 {
@@ -15,5 +14,7 @@ interface CartRepositoryInterface
 
     public function getCartByUser(User $user): Cart;
 
-    public function getProducts(Cart $cart): Collection;
+    public function getProducts(Cart $cart);
+
+    public function deleteCartAndCreateNew(User $user): Cart;
 }

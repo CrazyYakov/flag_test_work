@@ -2,15 +2,17 @@
 
 namespace App\Providers;
 
+use App\Services\Repositories\CartRepository;
 use App\Services\Repositories\Interfaces\CartRepositoryInterface;
 use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Services\Repositories\Interfaces\PaymentMethodRepositoryInterface;
 use App\Services\Repositories\Interfaces\ProductRepositoryInterface;
+use App\Services\Repositories\Interfaces\StatusRepositoryInterface;
 use App\Services\Repositories\Interfaces\UserRepositoryInterface;
-use App\Services\Repositories\CartRepository;
 use App\Services\Repositories\OrderRepository;
 use App\Services\Repositories\PaymentMethodRepository;
 use App\Services\Repositories\ProductRepository;
+use App\Services\Repositories\StatusRepository;
 use App\Services\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -44,6 +46,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             abstract: OrderRepositoryInterface::class,
             concrete: OrderRepository::class
+        );
+
+        $this->app->bind(
+            abstract: StatusRepositoryInterface::class,
+            concrete: StatusRepository::class
         );
     }
 }

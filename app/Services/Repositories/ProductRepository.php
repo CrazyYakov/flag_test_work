@@ -13,6 +13,6 @@ class ProductRepository implements Interfaces\ProductRepositoryInterface
 
     public function get(DataBuilderInterface $dataBuilder)
     {
-        return Product::query()->build($dataBuilder)->simplePaginate();
+        return Product::query()->build($dataBuilder)->get();
     }
 }

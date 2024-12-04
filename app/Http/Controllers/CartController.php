@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ReservedProductResource;
+use App\Http\Resources\ProductInCartResource;
 use App\Services\Repositories\Interfaces\CartRepositoryInterface;
 use App\Services\Repositories\Interfaces\ProductRepositoryInterface;
 use Illuminate\Http\Request;
@@ -22,6 +22,15 @@ class CartController extends Controller
         $this->productRepository = $productRepository;
     }
 
+    public function index(Request $request): AnonymousResourceCollection
+    {
+        $cart = $this->cartRepository->getCartByUser($request->user());
+
+        $products = $this->cartRepository->getProducts($cart);
+
+        return ProductInCartResource::collection($products);
+    }
+
     public function store(Request $request, int $id): AnonymousResourceCollection
     {
         $cart = $this->cartRepository->getCartByUser($request->user());
@@ -33,7 +42,7 @@ class CartController extends Controller
 
         $products = $this->cartRepository->getProducts($cart);
 
-        return ReservedProductResource::collection($products);
+        return ProductInCartResource::collection($products);
     }
 
     public function remove(Request $request, int $id): AnonymousResourceCollection
@@ -47,6 +56,6 @@ class CartController extends Controller
 
         $products = $this->cartRepository->getProducts($cart);
 
-        return ReservedProductResource::collection($products);
+        return ProductInCartResource::collection($products);
     }
 }
