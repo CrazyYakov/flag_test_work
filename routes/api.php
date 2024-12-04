@@ -39,8 +39,3 @@ Route::prefix('/orders')->middleware('auth:sanctum')->group(function () {
 });
 
 Route::middleware(PaymentMiddleware::class)->get('/payment', [PaymentController::class, 'pay']);
-
-
-Route::get('/', function () {
-    throw new Exception("error");
-});
