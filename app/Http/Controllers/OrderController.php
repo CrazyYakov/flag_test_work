@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Order\IndexRequest;
 use App\Http\Requests\Order\StoreRequest;
+use App\Http\Resources\Order\OrderResource;
 use App\Http\Resources\Order\StoreResource;
 use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Services\Repositories\Interfaces\PaymentMethodRepositoryInterface;
@@ -32,11 +33,11 @@ class OrderController extends Controller
         return $this->orderRepository->get($orderRequest);
     }
 
-    public function show(int $id): StoreResource
+    public function show(int $id): OrderResource
     {
         $order = $this->orderRepository->getById($id);
 
-        return new StoreResource($order);
+        return new OrderResource($order);
     }
 
     public function store(StoreRequest $request): StoreResource

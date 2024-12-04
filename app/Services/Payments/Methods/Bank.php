@@ -24,7 +24,7 @@ class Bank implements PaymentMethodInterface
 
         $token = Payment::encodeToken($payload);
 
-        return url()->query("/api/payment", [
+        return url()->query("/api/payment/pay", [
             'token' => $token
         ]);
     }

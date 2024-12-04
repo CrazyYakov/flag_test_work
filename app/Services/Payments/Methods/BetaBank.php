@@ -22,7 +22,7 @@ class BetaBank implements PaymentMethodInterface
             'order_id' => $this->order->getKey(),
         ];
 
-        return url("/api/payment", [
+        return url("/api/payment/pay", [
             'token' => Payment::encodeToken($payload)
         ]);
     }

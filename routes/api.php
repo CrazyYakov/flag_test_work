@@ -28,8 +28,10 @@ Route::prefix('/products')->group(function () {
     Route::get('/{id}', [ProductController::class, 'show']);
 });
 
-Route::prefix('/payments')->group(function () {
-    Route::get('/', [PaymentMethodController::class, 'index']);
+Route::prefix('/payment')->group(function () {
+    Route::get('/methods', [PaymentMethodController::class, 'index']);
+
+    Route::middleware(PaymentMiddleware::class)->get('/pay', [PaymentController::class, 'pay']);
 });
 
 Route::prefix('/orders')->middleware('auth:sanctum')->group(function () {
@@ -37,5 +39,3 @@ Route::prefix('/orders')->middleware('auth:sanctum')->group(function () {
     Route::get('/{id}', [OrderController::class, 'show']);
     Route::post('/create', [OrderController::class, 'store']);
 });
-
-Route::middleware(PaymentMiddleware::class)->get('/payment', [PaymentController::class, 'pay']);

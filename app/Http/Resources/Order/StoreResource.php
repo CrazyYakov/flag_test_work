@@ -18,7 +18,7 @@ class StoreResource extends JsonResource
             'id' => $this->id,
             'url' => $this->url,
             'full_price' => $this->full_price,
-            'count' => $this->count,
+            'count' => $this->count_products,
             'products' => ReservedProductResource::collection($this->products),
         ];
     }

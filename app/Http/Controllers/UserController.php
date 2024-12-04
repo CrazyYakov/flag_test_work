@@ -8,7 +8,6 @@ use App\Http\Resources\AuthorizationResource;
 use App\Models\User;
 use App\Services\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller

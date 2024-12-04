@@ -17,7 +17,7 @@ class OrderResource extends JsonResource
         return [
             'id' => $this->id,
             'full_price' => $this->full_price,
-            'count' => $this->count,
+            'count' => $this->count_products,
             'products' => ReservedProductResource::collection($this->products),
         ];
     }

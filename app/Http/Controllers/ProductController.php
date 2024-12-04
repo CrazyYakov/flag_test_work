@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductFilterRequest;
 use App\Http\Resources\ProductResource;
 use App\Services\Repositories\Interfaces\ProductRepositoryInterface;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,7 @@ class ProductController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function index(ProductFilterRequest $request)
+    public function index(ProductFilterRequest $request): AnonymousResourceCollection
     {
         return ProductResource::collection($this->productRepository->get($request));
     }

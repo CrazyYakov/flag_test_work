@@ -7,6 +7,6 @@ class PaymentMethodTest extends TestCase
 {
     public function test_index()
     {
-        $this->get('/api/payments')->assertOk();
+        $this->get('/api/payment/methods')->assertOk();
     }
 }
