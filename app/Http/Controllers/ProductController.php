@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductFilterRequest;
 use App\Http\Resources\ProductResource;
-use App\Services\Repositories\Interfaces\ProductRepositoryInterface;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Marketplace\Product\Infrastructure\Interfaces\ProductRepositoryInterface;
 
 class ProductController extends Controller
 {

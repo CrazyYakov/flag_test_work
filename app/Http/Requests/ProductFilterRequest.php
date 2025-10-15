@@ -6,32 +6,22 @@ use App\Services\BuilderHelper\DataBuilderInterface;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductFilterRequest extends FormRequest implements DataBuilderInterface
+/**
+ * @property-read float|null $filter_price
+ * @property-read string $sort_price_dir
+ */
+class ProductFilterRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
             'filter_price' => [
-                'string',
+                'float',
             ],
-            'sort_price' => [
+            'sort_price_dir' => [
                 'string',
                 Rule::in(['asc', 'desc'])
             ]
         ];
-    }
-
-    public function getFilters(): array
-    {
-        return array_filter([
-            'price' => $this->has('filter_price') ? explode(',', $this->get('filter_price')) : null
-        ]);
-    }
-
-    public function getSorts(): array
-    {
-        return array_filter([
-            'price' => $this->get('sort_price')
-        ]);
     }
 }

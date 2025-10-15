@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductInCartResource;
 use App\Services\Repositories\Interfaces\CartRepositoryInterface;
-use App\Services\Repositories\Interfaces\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Marketplace\Product\Infrastructure\Interfaces\ProductRepositoryInterface;
 
 class CartController extends Controller
 {

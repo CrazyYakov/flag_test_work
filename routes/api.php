@@ -4,15 +4,17 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
 use App\Http\Middleware\PaymentMiddleware;
 use Illuminate\Support\Facades\Route;
+use Marketplace\Auth\Presentation\Controllers\AuthorizationController;
+use Marketplace\Auth\Presentation\Controllers\RegistrationController;
+use Marketplace\Product\Presentation\Controllers\IndexProductController;
+use Marketplace\Product\Presentation\Controllers\ShowProductController;
 
-Route::prefix('/user')->group(function () {
-    Route::post('/registration', [UserController::class, 'registration']);
+Route::prefix('/auth')->group(function () {
+    Route::post('/registration', RegistrationController::class);
 
-    Route::post('/authorization', [UserController::class, 'authorization']);
+    Route::post('/authorization', AuthorizationController::class);
 });
 
 Route::prefix('/cart')->middleware('auth:sanctum')->group(function () {
@@ -24,8 +26,8 @@ Route::prefix('/cart')->middleware('auth:sanctum')->group(function () {
 });
 
 Route::prefix('/products')->group(function () {
-    Route::get('/', [ProductController::class, 'index']);
-    Route::get('/{id}', [ProductController::class, 'show']);
+    Route::get('/', IndexProductController::class);
+    Route::get('/{id}', ShowProductController::class);
 });
 
 Route::prefix('/payment')->group(function () {

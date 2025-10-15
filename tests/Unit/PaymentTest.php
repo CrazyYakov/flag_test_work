@@ -2,19 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Services\Payments\Payment;
+use App\Services\Payments\TokenService;
 use PHPUnit\Framework\TestCase;
 
 class PaymentTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Payment::setTokenKey(123);
-        Payment::setAlg("HS256");
-    }
-
     /**
      * A basic test example.
      */
@@ -24,9 +16,14 @@ class PaymentTest extends TestCase
             'hello' => 'world'
         ];
 
-        $token = Payment::encodeToken($payload);
+        $payment = new TokenService(
+            'test-token',
+            'test-algorithm',
+        );
 
-        $payloadFromToken = (array) Payment::decodeToken($token);
+        $token = $payment->encodeToken($payload);
+
+        $payloadFromToken = $payment->decodeToken($token);
 
         $this->assertEquals($payload, $payloadFromToken);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\Payments\Payment;
+use App\Services\Payments\TokenService;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,7 @@ class PaymentMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         try {
-            Payment::decodeToken($request->get('token'));
+            TokenService::decodeToken($request->get('token'));
         } catch (Throwable) {
             abort(403);
         }

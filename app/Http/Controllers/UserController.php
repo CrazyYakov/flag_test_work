@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\AuthorizationRequest;
-use App\Http\Requests\Auth\RegistrationRequest;
 use App\Http\Resources\AuthorizationResource;
 use App\Models\User;
-use App\Services\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Test\Profile\Infrastructure\Interfaces\UserRepositoryInterface;
+use Test\Profile\Presentation\Requests\AuthorizationRequest;
+use Test\Profile\Presentation\Requests\RegistrationRequest;
 
 class UserController extends Controller
 {

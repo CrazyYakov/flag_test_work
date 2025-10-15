@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace Marketplace\Auth\Presentation\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -22,7 +22,8 @@ class AuthorizationRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                'max:255'
+                'max:255',
+                'exists:users,email'
             ],
             'password' => [
                 'required',

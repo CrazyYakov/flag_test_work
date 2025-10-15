@@ -6,15 +6,15 @@ use App\Services\Repositories\CartRepository;
 use App\Services\Repositories\Interfaces\CartRepositoryInterface;
 use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Services\Repositories\Interfaces\PaymentMethodRepositoryInterface;
-use App\Services\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Services\Repositories\Interfaces\StatusRepositoryInterface;
-use App\Services\Repositories\Interfaces\UserRepositoryInterface;
 use App\Services\Repositories\OrderRepository;
 use App\Services\Repositories\PaymentMethodRepository;
-use App\Services\Repositories\ProductRepository;
 use App\Services\Repositories\StatusRepository;
-use App\Services\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use Marketplace\Product\Infrastructure\Interfaces\ProductRepositoryInterface;
+use Marketplace\Product\Infrastructure\Repositories\ProductRepository;
+use Test\Profile\Infrastructure\Interfaces\UserRepositoryInterface;
+use Test\Profile\Infrastructure\Repositories\UserRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -24,18 +24,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            abstract: UserRepositoryInterface::class,
-            concrete: UserRepository::class
-        );
-
-        $this->app->bind(
             abstract: CartRepositoryInterface::class,
             concrete: CartRepository::class
-        );
-
-        $this->app->bind(
-            abstract: ProductRepositoryInterface::class,
-            concrete: ProductRepository::class
         );
 
         $this->app->bind(

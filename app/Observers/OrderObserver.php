@@ -4,21 +4,21 @@ namespace App\Observers;
 
 use App\Models\Order;
 use App\Services\Repositories\Interfaces\CartRepositoryInterface;
+use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
 
 class OrderObserver
 {
+    public function __construct(
+        private CartRepositoryInterface $cartRepository,
+    ) {}
+
     public function created(Order $order): void
     {
         $order->url = $this->getUrl($order);
 
         $order->setProductInCart($order->user->cart);
 
-        $this->getCartRepository()->deleteCartAndCreateNew($order->user);
-    }
-
-    private function getCartRepository(): CartRepositoryInterface
-    {
-        return app(CartRepositoryInterface::class);
+        $this->cartRepository->deleteCartAndCreateNew($order->user);
     }
 
     private function getUrl(Order $order): string

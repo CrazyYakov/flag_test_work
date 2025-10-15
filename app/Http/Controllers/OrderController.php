@@ -13,20 +13,11 @@ use App\Services\Repositories\Order\OrderData;
 
 class OrderController extends Controller
 {
-    private PaymentMethodRepositoryInterface $paymentMethodRepository;
-    private OrderRepositoryInterface $orderRepository;
-    private StatusRepositoryInterface $statusRepository;
-
     public function __construct(
-        PaymentMethodRepositoryInterface $paymentMethodRepository,
-        OrderRepositoryInterface         $orderRepository,
-        StatusRepositoryInterface        $statusRepository
-    )
-    {
-        $this->paymentMethodRepository = $paymentMethodRepository;
-        $this->orderRepository = $orderRepository;
-        $this->statusRepository = $statusRepository;
-    }
+        private readonly  PaymentMethodRepositoryInterface $paymentMethodRepository,
+        private readonly  OrderRepositoryInterface         $orderRepository,
+        private readonly  StatusRepositoryInterface        $statusRepository
+    ) {}
 
     public function index(IndexRequest $orderRequest)
     {

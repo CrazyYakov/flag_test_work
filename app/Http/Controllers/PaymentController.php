@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Order\StoreResource;
-use App\Services\Payments\Payment;
+use App\Services\Payments\TokenService;
 use App\Services\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Services\Repositories\Interfaces\StatusRepositoryInterface;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class PaymentController extends Controller
 
     public function pay(Request $request): array
     {
-        $payloadToken = Payment::decodeToken($request->get('token'));
+        $payloadToken = TokenService::decodeToken($request->get('token'));
 
         $order = $this->orderRepository->getById($payloadToken->order_id);
 

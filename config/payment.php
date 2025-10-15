@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\Payments\Methods\Bank;
+use App\Services\Payments\Methods\AlphaBank;
 use App\Services\Payments\Methods\BetaBank;
 
 return [
@@ -9,7 +9,7 @@ return [
 
     'methods' => [
         'bank' => [
-            'class' => Bank::class,
+            'class' => AlphaBank::class,
             'title' => 'Bank'
         ],
         'beta_bank' => [
