@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Product\Core\Domain\Values\Lists;
+namespace Marketplace\Cart\Core\Domain\Values\List;
 
-use Marketplace\Product\Core\Domain\Entities\Product;
+use Marketplace\Cart\Core\Domain\Entities\ProductCart;
 
 class ProductInCartList implements \Iterator
 {
@@ -21,7 +21,7 @@ class ProductInCartList implements \Iterator
     /**
      * @inheritDoc
      */
-    public function current(): Product
+    public function current(): ProductCart
     {
         return $this->products[$this->position];
     }

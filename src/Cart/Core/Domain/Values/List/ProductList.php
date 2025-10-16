@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Profile\Core\Domain\Values\List;
+namespace Marketplace\Cart\Core\Domain\Values\List;
 
 use Iterator;
 use Marketplace\Product\Core\Domain\Entities\Product;
