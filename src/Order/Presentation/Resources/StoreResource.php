@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Order;
+namespace Marketplace\Order\Presentation\Resources;
 
 use App\Http\Resources\ReservedProductResource;
 use Illuminate\Http\Request;
