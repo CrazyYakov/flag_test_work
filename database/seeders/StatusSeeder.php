@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Status;
 use Illuminate\Database\Seeder;
+use Marketplace\Order\Core\Domain\Values\Enums\OrderStatusEnum;
 
 class StatusSeeder extends Seeder
 {
@@ -12,19 +13,15 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        $onPaymentStatus = new Status();
-        $onPaymentStatus->title = "На оплату";
-        $onPaymentStatus->slug = "on_payment";
-        $onPaymentStatus->save();
-
-        $paidStatus = new Status();
-        $paidStatus->title = "Оплачено";
-        $paidStatus->slug = "paid";
-        $paidStatus->save();
-
-        $cancelledStatus = new Status();
-        $cancelledStatus->title = "Отменен";
-        $cancelledStatus->slug = "cancelled";
-        $cancelledStatus->save();
+        foreach (OrderStatusEnum::cases() as $orderStatus) {
+            Status::query()->firstOrCreate(
+                [
+                    'slug' => $orderStatus->value,
+                ],
+                [
+                    'title' => $orderStatus->label(),
+                ]
+            );
+        }
     }
 }

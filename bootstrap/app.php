@@ -32,4 +32,8 @@ return Application::configure(basePath: dirname(__DIR__))
                 'message' => $exception->getMessage()
             ], 404);
         });
-    })->create();
+    })
+    ->withCommands([
+        Marketplace\Order\Presentation\Commands\CancelOrderCommand::class,
+    ])
+    ->create();

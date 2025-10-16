@@ -1,10 +1,9 @@
 <?php
 
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\ObserverProvider::class,
-    App\Providers\RepositoryServiceProvider::class,
-
-    Marketplace\Auth\Infrastructure\Providers\ProfileServiceProvider::class,
+    Marketplace\Auth\Infrastructure\Providers\AuthServiceProvider::class,
     Marketplace\Product\Infrastructure\Providers\ProductServiceProvider::class,
+    Marketplace\Order\Infrastructure\Providers\OrderServiceProvider::class,
+    Marketplace\Cart\Infrastructure\Providers\ProfileServiceProvider::class,
+    Marketplace\Payment\Infrastructure\Providers\PaymentServiceProvider::class,
 ];

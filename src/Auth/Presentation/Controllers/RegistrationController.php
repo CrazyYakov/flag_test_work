@@ -21,7 +21,8 @@ readonly class RegistrationController
     public function __invoke(RegistrationRequest $request): Responsable
     {
         try {
-            $user = $this->addUserAction->run($request->email, $request->password);
+            $user = $this->addUserAction
+                ->run($request->email, $request->name, $request->password);
         } catch (UserExistException $exception) {
             return new BadRequestResponse($exception->getMessage());
         }

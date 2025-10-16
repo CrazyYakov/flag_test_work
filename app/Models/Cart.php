@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Pivot\ProductInCart;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * @property User $user
- * @property Collection $products
+ * @property int $user_id
+ *
+ * @property-read  User $user
+ * @property-read  Collection|Product[] $products
  */
 class Cart extends Model
 {

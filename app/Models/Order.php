@@ -2,27 +2,28 @@
 
 namespace App\Models;
 
-use App\Builders\OrderBuilder;
+use App\Models\Pivot\ReservedProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
+use Marketplace\Order\Core\Domain\Values\Enums\OrderStatusEnum;
 
 /**
  * @property string $url
- * @property float $full_price
- * @property int $count_products
- * @property Status $status
+ * @property OrderStatusEnum $status
  * @property Collection $products
  * @property User $user
  * @property PaymentMethod $paymentMethod
  */
 class Order extends Model
 {
-    protected static string $builder = OrderBuilder::class;
-
     protected $hidden = [
         'url'
+    ];
+
+    protected $casts = [
+        'status' => OrderStatusEnum::class,
     ];
 
     public function user(): BelongsTo
@@ -67,26 +68,12 @@ class Order extends Model
         return $this;
     }
 
-    public function setStatus(Status $status): static
-    {
-        $this->status()->associate($status);
-
-        return $this;
-    }
-
     public function setProductInCart(Cart $cart): static
     {
         $this->full_price = $cart->products->sum(fn(Product $product) => $product->productInCart->price);
         $this->count_products = $cart->products->sum(fn(Product $product) => $product->productInCart->count);
 
-        $this->products()->sync($cart->products->keyBy('id')->map(function (Product $product) {
-            return [
-                'price' => $product->productInCart->price,
-                'count' => $product->productInCart->count
-            ];
-        }));
 
-        $this->save();
 
         return $this;
     }

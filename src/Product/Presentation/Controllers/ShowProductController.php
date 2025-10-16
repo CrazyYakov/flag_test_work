@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Marketplace\Product\Presentation\Controllers;
 
-use App\Http\Resources\ProductResource;
+use Illuminate\Contracts\Support\Responsable;
 use Marketplace\Product\Infrastructure\Interfaces\ProductRepositoryInterface;
+use Marketplace\Product\Presentation\Responses\SuccessResponse;
+use Marketplace\Product\Presentation\View\ProductView;
 
 readonly class ShowProductController
 {
@@ -13,10 +15,12 @@ readonly class ShowProductController
         private ProductRepositoryInterface $productRepository
     ) {}
 
-    public function __invoke(int $id): ProductResource
+    public function __invoke(int $id): Responsable
     {
         $product = $this->productRepository->getById($id);
 
-        return new ProductResource($product);
+        return new SuccessResponse(
+            new ProductView($product)
+        );
     }
 }

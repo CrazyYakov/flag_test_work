@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Marketplace\Cart\Core\Application\Actions\AddProductToCartAction;
 use Marketplace\Cart\Presentation\Response\CreateResponse;
+use Marketplace\Cart\Presentation\Response\SuccessResponse;
 
 class StoreProductCartController
 {
@@ -21,6 +22,6 @@ class StoreProductCartController
     {
         $this->action->run($request->user()->id, $id);
 
-        return new CreateResponse();
+        return new SuccessResponse();
     }
 }

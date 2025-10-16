@@ -14,8 +14,10 @@ class PaymentMethodSeeder extends Seeder
      */
     public function run(): void
     {
-        $methods = config('payment.methods');
+        $methods = config('domain.payment.methods');
 
-        Arr::map($methods, fn($data) => PaymentMethod::query()->create($data));
+        Arr::map($methods, fn(array $method) => PaymentMethod::query()
+            ->create($method['data'])
+        );
     }
 }

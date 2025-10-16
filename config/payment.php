@@ -1,16 +1,16 @@
 <?php
 
-use App\Services\Payments\Methods\AlphaBank;
-use App\Services\Payments\Methods\BetaBank;
+use Marketplace\Payment\Infrastructure\Services\Banks\AlphaBank;
+use Marketplace\Payment\Infrastructure\Services\Banks\BetaBank;
 
 return [
     'token_key' => env('PAYMENT_TOKEN_KEY'),
     'alg' => 'HS256',
 
     'methods' => [
-        'bank' => [
+        'alpha_bank' => [
             'class' => AlphaBank::class,
-            'title' => 'Bank'
+            'title' => 'Alpha Bank'
         ],
         'beta_bank' => [
             'class' => BetaBank::class,

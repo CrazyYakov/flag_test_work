@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Services\Payments\TokenService;
+use Marketplace\Payment\Infrastructure\Services\TokenService;
 use PHPUnit\Framework\TestCase;
 
 class PaymentTest extends TestCase

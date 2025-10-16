@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use App\Services\Payments\Methods\PaymentMethodInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Marketplace\Payment\Infrastructure\Interfaces\PaymentMethodInterface;
 
 /**
  * @property string $title
+ * @property string $slug
  * @property string $class
  */
 class PaymentMethod extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'title',
+        'slug',
         'class'
     ];
 

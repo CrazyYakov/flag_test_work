@@ -19,7 +19,7 @@ readonly class AuthorizationController
         private CreateUserTokenAction $createUserTokenAction,
     ) {}
 
-    public function authorization(AuthorizationRequest $request): Responsable
+    public function __invoke(AuthorizationRequest $request): Responsable
     {
         $user = $this->userRepository->getByEmail($request->email);
 

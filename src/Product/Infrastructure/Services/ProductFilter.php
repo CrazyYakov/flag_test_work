@@ -10,11 +10,11 @@ use Marketplace\Product\Infrastructure\Interfaces\FilterInterface;
 readonly class ProductFilter implements FilterInterface
 {
     public function __construct(
-        protected float $price
+        protected ?float $price
     ) {}
 
     public function apply(Builder $builder): Builder
     {
-        return $builder->where('price', $this->price);
+        return $builder->when($this->price !== null, fn($query) => $query->where('price', $this->price));
     }
 }

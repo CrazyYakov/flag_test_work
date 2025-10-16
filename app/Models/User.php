@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use Marketplace\Auth\Infrastructure\Observers\UserObserver;
 
 /**
  * @property string $email
@@ -13,6 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $name
  * @property Cart   $cart
  */
+#[ObservedBy(UserObserver::class)]
 class User extends Authenticatable
 {
     use HasFactory, HasApiTokens;

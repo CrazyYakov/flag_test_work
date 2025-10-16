@@ -13,17 +13,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('payment_method_id');
-            $table->foreignId('status_id');
-            $table->float('full_price', 2)->nullable();
-            $table->unsignedInteger('count_products')->nullable();
+            $table->integer('status');
             $table->string('url')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');
-            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 

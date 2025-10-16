@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Builders\ProductBuilder;
+use App\Models\Pivot\ProductInCart;
+use App\Models\Pivot\ReservedProduct;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,4 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected static string $builder = ProductBuilder::class;
-
 }

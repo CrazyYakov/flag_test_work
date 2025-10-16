@@ -7,7 +7,8 @@ namespace Marketplace\Cart\Presentation\Controllers;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Marketplace\Cart\Infrastructure\Interfaces\CartRepositoryInterface;
-use Marketplace\Cart\Presentation\Resources\ProductInCartResource;
+use Marketplace\Cart\Presentation\Response\SuccessResponse;
+use Marketplace\Cart\Presentation\View\ProductInCartListView;
 
 class IndexProductCartController
 {
@@ -19,6 +20,8 @@ class IndexProductCartController
     {
         $cart = $this->cartRepository->getCartByUser($request->user()->id);
 
-        return ProductInCartResource::collection($cart->productInCartList);
+        return new SuccessResponse(
+            new ProductInCartListView($cart->productInCartList)
+        );
     }
 }

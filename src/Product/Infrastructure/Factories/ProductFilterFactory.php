@@ -12,7 +12,7 @@ class ProductFilterFactory
     public function create(array $data): FilterInterface
     {
         return new ProductFilter(
-            price: $data['filter_price'],
+            price: $data['filter_price'] ?? null,
         );
     }
 }

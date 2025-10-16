@@ -21,11 +21,12 @@ class UserManager implements UserMangerInterface
         return $user->createToken('token')->plainTextToken;
     }
 
-    public function createUser(string $email, string $password): User
+    public function createUser(string $email, string $name, string $password): User
     {
         $model = new \App\Models\User();
         $model->email = $email;
         $model->password = $password;
+        $model->name = $name;
         $model->save();
 
         return $this->userFactory->create($model->toArray());

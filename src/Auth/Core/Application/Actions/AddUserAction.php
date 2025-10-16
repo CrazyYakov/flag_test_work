@@ -19,7 +19,7 @@ class AddUserAction
     /**
      * @throws UserExistException
      */
-    public function run(string $email, string $password): User
+    public function run(string $email, string $name, string $password): User
     {
         $user = $this->userRepository->getByEmail($email);
 
@@ -27,6 +27,6 @@ class AddUserAction
             throw new UserExistException();
         }
 
-        return $this->userManger->createUser($email, $password);
+        return $this->userManger->createUser($email, $name, $password);
     }
 }

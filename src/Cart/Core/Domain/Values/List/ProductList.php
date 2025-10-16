@@ -9,12 +9,12 @@ use Marketplace\Product\Core\Domain\Entities\Product;
 
 class ProductList implements Iterator
 {
-    private array $products;
+    private array $list;
     private int $position;
 
-    public function __construct(array $productList)
+    public function __construct(array $list)
     {
-        $this->products = $productList;
+        $this->list = $list;
         $this->position = 0;
     }
 
@@ -23,7 +23,7 @@ class ProductList implements Iterator
      */
     public function current(): Product
     {
-        return $this->products[$this->position];
+        return $this->list[$this->position];
     }
 
     /**
@@ -47,7 +47,7 @@ class ProductList implements Iterator
      */
     public function valid(): bool
     {
-        return array_key_exists($this->position, $this->products);
+        return array_key_exists($this->position, $this->list);
     }
 
     /**

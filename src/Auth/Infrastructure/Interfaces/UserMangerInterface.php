@@ -10,5 +10,5 @@ interface UserMangerInterface
 {
     public function createToken(User $user): string;
 
-    public function createUser(string $email, string $password): User;
+    public function createUser(string $email, string $name, string $password): User;
 }

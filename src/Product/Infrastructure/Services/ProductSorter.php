@@ -11,11 +11,11 @@ readonly class ProductSorter implements SorterInterface
 {
     public function __construct(
         private ProductSorterEnum $name,
-        private string            $direction,
+        private ?string            $direction,
     ) {}
 
     public function apply(Builder $builder): Builder
     {
-        return $builder->orderBy($this->name->value, $this->direction);
+        return $builder->orderBy($this->name->value, $this->direction ?? 'asc');
     }
 }
