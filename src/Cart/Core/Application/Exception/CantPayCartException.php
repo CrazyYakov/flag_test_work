@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Cart\Infrastructure\Exception;
+namespace Marketplace\Cart\Core\Application\Exception;
 
 use Exception;
 

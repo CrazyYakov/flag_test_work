@@ -14,5 +14,7 @@ interface CartManagerInterface
 
     public function removeProductInCart(Cart $cart, Product $product): void;
 
-    public function payCart(int $userId, int $paymentMethodId): void;
+    public function deleteCart(int $userId): void;
+
+    public function createNewCart(int $userId): void;
 }
