@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Marketplace\Payment\Infrastructure\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Marketplace\Payment\Infrastructure\Interfaces\PaymentMethodRepositoryInterface;
+use Marketplace\Payment\Core\Ports\PaymentMethodRepositoryContract;
 use Marketplace\Payment\Infrastructure\Repositories\PaymentMethodRepository;
 use Marketplace\Payment\Infrastructure\Services\Banks\AlphaBank;
 use Marketplace\Payment\Infrastructure\Services\Banks\BetaBank;
@@ -36,7 +36,7 @@ class PaymentServiceProvider extends ServiceProvider
             });
 
         $this->app->bind(
-            PaymentMethodRepositoryInterface::class,
+            PaymentMethodRepositoryContract::class,
             PaymentMethodRepository::class,
         );
     }

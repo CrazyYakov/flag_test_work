@@ -6,14 +6,14 @@ namespace Marketplace\Auth\Core\Application\Actions;
 
 use Marketplace\Auth\Core\Application\Exceptions\UserExistException;
 use Marketplace\Auth\Core\Domain\Entities\User;
-use Marketplace\Auth\Infrastructure\Interfaces\UserMangerInterface;
-use Marketplace\Auth\Infrastructure\Interfaces\UserRepositoryInterface;
+use Marketplace\Auth\Core\Ports\UserMangerContract;
+use Marketplace\Auth\Core\Ports\UserRepositoryContract;
 
 class AddUserAction
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly UserMangerInterface $userManger
+        private readonly UserRepositoryContract $userRepository,
+        private readonly UserMangerContract $userManger
     ) {}
 
     /**

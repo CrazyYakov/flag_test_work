@@ -1,10 +1,10 @@
 <?php
 
-namespace Marketplace\Auth\Infrastructure\Interfaces;
+namespace Marketplace\Auth\Core\Ports;
 
 use Marketplace\Auth\Core\Domain\Entities\User;
 
-interface UserRepositoryInterface
+interface UserRepositoryContract
 {
     public function getByEmail(string $email): ?User;
 }

@@ -6,7 +6,7 @@ namespace Marketplace\Auth\Presentation\Controllers;
 
 use Illuminate\Contracts\Support\Responsable;
 use Marketplace\Auth\Core\Application\Actions\CreateUserTokenAction;
-use Marketplace\Auth\Infrastructure\Interfaces\UserRepositoryInterface;
+use Marketplace\Auth\Core\Ports\UserRepositoryContract;
 use Marketplace\Auth\Presentation\Requests\AuthorizationRequest;
 use Marketplace\Auth\Presentation\Response\SuccessResponse;
 use Marketplace\Auth\Presentation\Response\UnauthorizedResponse;
@@ -15,7 +15,7 @@ use Marketplace\Auth\Presentation\View\UserView;
 readonly class AuthorizationController
 {
     public function __construct(
-        private UserRepositoryInterface $userRepository,
+        private UserRepositoryContract $userRepository,
         private CreateUserTokenAction $createUserTokenAction,
     ) {}
 

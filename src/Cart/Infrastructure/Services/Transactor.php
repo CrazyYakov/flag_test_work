@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Marketplace\Cart\Infrastructure\Services;
 
 use Illuminate\Support\Facades\DB;
-use Marketplace\Cart\Infrastructure\Interfaces\TransactorInterface;
+use Marketplace\Cart\Core\Ports\TransactorContract;
 
-class Transactor implements TransactorInterface
+class Transactor implements TransactorContract
 {
 
     public function withTransaction(callable $transaction): void

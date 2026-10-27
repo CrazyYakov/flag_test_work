@@ -3,7 +3,7 @@
 namespace Marketplace\Order\Presentation\Commands;
 
 use Illuminate\Console\Command;
-use Marketplace\Order\Infrastructure\Interfaces\OrderManagerInterface;
+use Marketplace\Order\Core\Ports\OrderManagerContract;
 
 class CancelOrderCommand extends Command
 {
@@ -24,9 +24,9 @@ class CancelOrderCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(OrderManagerInterface $orderManager): int
+    public function handle(OrderManagerContract $orderManager): int
     {
-        $orderManager->cancelExpiredOrders();
+        $orderManager->cancelExpiredOrders(now()->subMinutes(2));
 
         return static::SUCCESS;
     }

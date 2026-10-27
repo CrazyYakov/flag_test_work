@@ -1,10 +1,10 @@
 <?php
 
-namespace Marketplace\Cart\Infrastructure\Interfaces;
+namespace Marketplace\Cart\Core\Ports;
 
 use Marketplace\Cart\Core\Domain\Aggregates\Cart;
 
-interface CartRepositoryInterface
+interface CartRepositoryContract
 {
     public function getCartByUser(int $userId): Cart;
 }

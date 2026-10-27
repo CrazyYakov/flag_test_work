@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Marketplace\Order\Core\Application\Actions;
 
 use Marketplace\Order\Core\Domain\Values\Enums\OrderStatusEnum;
-use Marketplace\Order\Infrastructure\Interfaces\OrderManagerInterface;
+use Marketplace\Order\Core\Ports\OrderManagerContract;
 
 class PayOrderAction
 {
     public function __construct(
-        private OrderManagerInterface $orderRepository,
+        private OrderManagerContract $orderRepository,
     ) {}
 
     public function run(int $orderId): void

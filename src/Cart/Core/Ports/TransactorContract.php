@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Cart\Infrastructure\Interfaces;
+namespace Marketplace\Cart\Core\Ports;
 
-interface TransactorInterface
+interface TransactorContract
 {
     public function withTransaction(callable $transaction): void;
 }

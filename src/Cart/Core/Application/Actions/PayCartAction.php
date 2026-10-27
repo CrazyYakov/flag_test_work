@@ -6,14 +6,14 @@ namespace Marketplace\Cart\Core\Application\Actions;
 
 use Marketplace\Cart\Core\Application\Exception\CantPayCartException;
 use Marketplace\Cart\Core\Application\Service\CartService;
-use Marketplace\Cart\Infrastructure\Interfaces\OrderManagerInterface;
-use Marketplace\Cart\Infrastructure\Interfaces\OrderRepositoryInterface;
+use Marketplace\Cart\Core\Ports\OrderManagerContract;
+use Marketplace\Cart\Core\Ports\OrderRepositoryContract;
 
 class PayCartAction
 {
     public function __construct(
-        private OrderRepositoryInterface $orderRepository,
-        private OrderManagerInterface $orderManager,
+        private OrderRepositoryContract $orderRepository,
+        private OrderManagerContract $orderManager,
         private CartService $cartService
     ) {}
 

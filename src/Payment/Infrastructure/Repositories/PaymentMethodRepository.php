@@ -7,9 +7,9 @@ namespace Marketplace\Payment\Infrastructure\Repositories;
 use App\Models\PaymentMethod as PaymentMethodModel;
 use Marketplace\Payment\Core\Domain\Entities\PaymentMethod;
 use Marketplace\Payment\Core\Domain\Values\List\PaymentMethodList;
-use Marketplace\Payment\Infrastructure\Interfaces\PaymentMethodRepositoryInterface;
+use Marketplace\Payment\Core\Ports\PaymentMethodRepositoryContract;
 
-class PaymentMethodRepository implements PaymentMethodRepositoryInterface
+class PaymentMethodRepository implements PaymentMethodRepositoryContract
 {
     public function all(): PaymentMethodList
     {

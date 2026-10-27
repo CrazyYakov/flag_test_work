@@ -1,13 +1,13 @@
 <?php
 
-namespace Marketplace\Order\Infrastructure\Interfaces;
+namespace Marketplace\Order\Core\Ports;
 
 use Marketplace\Order\Core\Domain\Aggregates\Order;
 use Marketplace\Order\Core\Domain\Values\List\OrderList;
 
-interface OrderRepositoryInterface
+interface OrderRepositoryContract
 {
-    public function get(FilterInterface $filter, SorterInterface $sorter): OrderList;
+    public function get(FilterContract $filter, SorterContract $sorter): OrderList;
 
     public function getById(int $id): Order;
 

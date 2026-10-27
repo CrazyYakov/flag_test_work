@@ -3,10 +3,10 @@
 namespace Marketplace\Payment\Infrastructure\Services\Banks;
 
 use Marketplace\Payment\Core\Domain\Values\Enums\PaymentMethodEnum;
-use Marketplace\Payment\Infrastructure\Interfaces\PaymentMethodInterface;
+use Marketplace\Payment\Core\Ports\PaymentMethodContract;
 use Marketplace\Payment\Infrastructure\Services\TokenService;
 
-class AlphaBank implements PaymentMethodInterface
+class AlphaBank implements PaymentMethodContract
 {
     public function __construct(
         private readonly TokenService $payment

@@ -10,9 +10,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Marketplace\Cart\Core\Domain\Aggregates\Cart;
 use Marketplace\Cart\Core\Domain\Entities\Product;
-use Marketplace\Cart\Infrastructure\Interfaces\CartManagerInterface;
+use Marketplace\Cart\Core\Ports\CartManagerContract;
 
-class CartManger implements CartManagerInterface
+class CartManger implements CartManagerContract
 {
     public function storeProductInCart(Cart $cart, Product $product): void
     {

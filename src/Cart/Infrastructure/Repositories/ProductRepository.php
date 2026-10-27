@@ -6,9 +6,9 @@ namespace Marketplace\Cart\Infrastructure\Repositories;
 
 use App\Models\Product as ProductModel;
 use Marketplace\Cart\Core\Domain\Entities\Product;
-use Marketplace\Cart\Infrastructure\Interfaces\ProductRepositoryInterface;
+use Marketplace\Cart\Core\Ports\ProductRepositoryContract;
 
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository implements ProductRepositoryContract
 {
     public function getById(int $id): Product
     {

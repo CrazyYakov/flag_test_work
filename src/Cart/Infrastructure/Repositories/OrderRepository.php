@@ -6,9 +6,9 @@ namespace Marketplace\Cart\Infrastructure\Repositories;
 
 use App\Models\Order as OrderModel;
 use Marketplace\Cart\Core\Domain\Values\Enums\OrderStatusEnum;
-use Marketplace\Cart\Infrastructure\Interfaces\OrderRepositoryInterface;
+use Marketplace\Cart\Core\Ports\OrderRepositoryContract;
 
-class OrderRepository implements OrderRepositoryInterface
+class OrderRepository implements OrderRepositoryContract
 {
     public function isLastOrderIsNotPayed(int $userId): bool
     {

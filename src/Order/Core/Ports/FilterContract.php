@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Order\Infrastructure\Interfaces;
+namespace Marketplace\Order\Core\Ports;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
-interface FilterInterface
+interface FilterContract
 {
     public function apply(Builder $builder): Builder;
 }

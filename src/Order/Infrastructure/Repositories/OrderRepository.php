@@ -10,13 +10,13 @@ use Marketplace\Order\Core\Domain\Values\Enums\OrderStatusEnum;
 use Marketplace\Order\Core\Domain\Values\Enums\PaymentMethodEnum;
 use Marketplace\Order\Core\Domain\Values\List\OrderList;
 use Marketplace\Order\Core\Domain\Values\List\ProductList;
-use Marketplace\Order\Infrastructure\Interfaces\FilterInterface;
-use Marketplace\Order\Infrastructure\Interfaces\OrderRepositoryInterface;
-use Marketplace\Order\Infrastructure\Interfaces\SorterInterface;
+use Marketplace\Order\Core\Ports\FilterContract;
+use Marketplace\Order\Core\Ports\OrderRepositoryContract;
+use Marketplace\Order\Core\Ports\SorterContract;
 
-class OrderRepository implements OrderRepositoryInterface
+class OrderRepository implements OrderRepositoryContract
 {
-    public function get(FilterInterface $filter, SorterInterface $sorter): OrderList
+    public function get(FilterContract $filter, SorterContract $sorter): OrderList
     {
         $query = OrderModel::query();
 

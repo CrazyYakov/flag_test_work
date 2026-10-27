@@ -6,7 +6,7 @@ namespace Marketplace\Product\Presentation\Controllers;
 
 use Illuminate\Contracts\Support\Responsable;
 use Marketplace\Product\Infrastructure\Factories\ProductFilterFactory;
-use Marketplace\Product\Infrastructure\Interfaces\ProductRepositoryInterface;
+use Marketplace\Product\Core\Ports\ProductRepositoryContract;
 use Marketplace\Product\Infrastructure\Services\ProductSorter;
 use Marketplace\Product\Infrastructure\Services\ProductSorterEnum;
 use Marketplace\Product\Presentation\Requests\ProductFilterRequest;
@@ -17,7 +17,7 @@ readonly class IndexProductController
 {
     public function __construct(
         private ProductFilterFactory $productFilterFactory,
-        private ProductRepositoryInterface $productRepository,
+        private ProductRepositoryContract $productRepository,
     ) {}
 
     public function __invoke(ProductFilterRequest $request): Responsable

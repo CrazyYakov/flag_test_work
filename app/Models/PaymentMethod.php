@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Marketplace\Payment\Infrastructure\Interfaces\PaymentMethodInterface;
+use Marketplace\Payment\Core\Ports\PaymentMethodContract;
 
 /**
  * @property string $title
@@ -24,7 +24,7 @@ class PaymentMethod extends Model
 
     public $timestamps = false;
 
-    public function getClass(): PaymentMethodInterface
+    public function getClass(): PaymentMethodContract
     {
         return app($this->class);
     }

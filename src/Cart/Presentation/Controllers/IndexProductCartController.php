@@ -6,14 +6,14 @@ namespace Marketplace\Cart\Presentation\Controllers;
 
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
-use Marketplace\Cart\Infrastructure\Interfaces\CartRepositoryInterface;
+use Marketplace\Cart\Core\Ports\CartRepositoryContract;
 use Marketplace\Cart\Presentation\Response\SuccessResponse;
 use Marketplace\Cart\Presentation\View\ProductInCartListView;
 
 class IndexProductCartController
 {
     public function __construct(
-        private CartRepositoryInterface $cartRepository,
+        private CartRepositoryContract $cartRepository,
     ) {}
 
     public function __invoke(Request $request): Responsable

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Auth\Infrastructure\Interfaces;
+namespace Marketplace\Auth\Core\Ports;
 
 use Marketplace\Auth\Core\Domain\Entities\User;
 
-interface UserMangerInterface
+interface UserMangerContract
 {
     public function createToken(User $user): string;
 

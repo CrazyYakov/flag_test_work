@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Marketplace\Product\Infrastructure\Services;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Marketplace\Product\Infrastructure\Interfaces\FilterInterface;
+use Marketplace\Product\Core\Ports\FilterContract;
 
-readonly class ProductFilter implements FilterInterface
+readonly class ProductFilter implements FilterContract
 {
     public function __construct(
         protected ?float $price

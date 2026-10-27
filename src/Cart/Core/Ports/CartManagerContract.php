@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Cart\Infrastructure\Interfaces;
+namespace Marketplace\Cart\Core\Ports;
 
 
 use Marketplace\Cart\Core\Domain\Aggregates\Cart;
 use Marketplace\Cart\Core\Domain\Entities\Product;
 
-interface CartManagerInterface
+interface CartManagerContract
 {
     public function storeProductInCart(Cart $cart, Product $product): void;
 

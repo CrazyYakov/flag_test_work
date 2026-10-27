@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Cart\Infrastructure\Interfaces;
+namespace Marketplace\Cart\Core\Ports;
 
-interface OrderRepositoryInterface
+interface OrderRepositoryContract
 {
     public function isLastOrderIsNotPayed(int $userId): bool;
 }

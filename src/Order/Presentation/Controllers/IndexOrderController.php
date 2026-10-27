@@ -6,7 +6,7 @@ namespace Marketplace\Order\Presentation\Controllers;
 
 use Illuminate\Contracts\Support\Responsable;
 use Marketplace\Order\Infrastructure\Factories\OrderFilterFactory;
-use Marketplace\Order\Infrastructure\Interfaces\OrderRepositoryInterface;
+use Marketplace\Order\Core\Ports\OrderRepositoryContract;
 use Marketplace\Order\Infrastructure\Services\OrderSorter;
 use Marketplace\Order\Infrastructure\Services\OrderSorterEnum;
 use Marketplace\Order\Presentation\Requests\IndexRequest;
@@ -16,7 +16,7 @@ readonly class IndexOrderController
 {
     public function __construct(
         private OrderFilterFactory $filterFactory,
-        private OrderRepositoryInterface $orderRepository,
+        private OrderRepositoryContract $orderRepository,
     ) {}
 
     public function __invoke(IndexRequest $request): Responsable

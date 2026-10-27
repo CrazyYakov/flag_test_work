@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Marketplace\Order\Infrastructure\Services;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Marketplace\Order\Infrastructure\Interfaces\SorterInterface;
+use Marketplace\Order\Core\Ports\SorterContract;
 
-class OrderSorter implements SorterInterface
+class OrderSorter implements SorterContract
 {
     public function __construct(
         private OrderSorterEnum $orderColumn,

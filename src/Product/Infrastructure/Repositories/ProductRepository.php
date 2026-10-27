@@ -6,11 +6,11 @@ use App\Models\Product as ProductModel;
 use Marketplace\Product\Core\Domain\Entities\Product;
 use Marketplace\Product\Core\Domain\Factories\ProductFactory;
 use Marketplace\Product\Core\Domain\Values\Lists\ProductList;
-use Marketplace\Product\Infrastructure\Interfaces\FilterInterface;
-use Marketplace\Product\Infrastructure\Interfaces\ProductRepositoryInterface;
-use Marketplace\Product\Infrastructure\Interfaces\SorterInterface;
+use Marketplace\Product\Core\Ports\FilterContract;
+use Marketplace\Product\Core\Ports\ProductRepositoryContract;
+use Marketplace\Product\Core\Ports\SorterContract;
 
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository implements ProductRepositoryContract
 {
     public function __construct(
         private ProductFactory $productFactory,
@@ -23,7 +23,7 @@ class ProductRepository implements ProductRepositoryInterface
         return $this->productFactory->create($model->toArray());
     }
 
-    public function get(FilterInterface $filter, SorterInterface $sorter): ProductList
+    public function get(FilterContract $filter, SorterContract $sorter): ProductList
     {
         $builder = ProductModel::query();
 

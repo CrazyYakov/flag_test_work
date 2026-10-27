@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Marketplace\Payment\Infrastructure\Interfaces;
+namespace Marketplace\Payment\Core\Ports;
 
-interface PaymentMethodInterface
+interface PaymentMethodContract
 {
     public function generateUrlForOrder(int $orderId): string;
 

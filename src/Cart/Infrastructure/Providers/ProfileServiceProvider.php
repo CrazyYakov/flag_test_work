@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Marketplace\Cart\Infrastructure\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Marketplace\Cart\Infrastructure\Interfaces\CartManagerInterface;
-use Marketplace\Cart\Infrastructure\Interfaces\CartRepositoryInterface;
-use Marketplace\Cart\Infrastructure\Interfaces\OrderManagerInterface;
-use Marketplace\Cart\Infrastructure\Interfaces\OrderRepositoryInterface;
-use Marketplace\Cart\Infrastructure\Interfaces\ProductRepositoryInterface;
-use Marketplace\Cart\Infrastructure\Interfaces\TransactorInterface;
+use Marketplace\Cart\Core\Ports\CartManagerContract;
+use Marketplace\Cart\Core\Ports\CartRepositoryContract;
+use Marketplace\Cart\Core\Ports\OrderManagerContract;
+use Marketplace\Cart\Core\Ports\OrderRepositoryContract;
+use Marketplace\Cart\Core\Ports\ProductRepositoryContract;
+use Marketplace\Cart\Core\Ports\TransactorContract;
 use Marketplace\Cart\Infrastructure\Manager\CartManger;
 use Marketplace\Cart\Infrastructure\Manager\OrderManager;
 use Marketplace\Cart\Infrastructure\Repositories\CartRepository;
@@ -23,32 +23,32 @@ class ProfileServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->bind(
-            CartRepositoryInterface::class,
+            CartRepositoryContract::class,
             CartRepository::class
         );
 
         $this->app->bind(
-            CartManagerInterface::class,
+            CartManagerContract::class,
             CartManger::class
         );
 
         $this->app->bind(
-            ProductRepositoryInterface::class,
+            ProductRepositoryContract::class,
             ProductRepository::class
         );
 
         $this->app->bind(
-            OrderRepositoryInterface::class,
+            OrderRepositoryContract::class,
             OrderRepository::class
         );
 
         $this->app->bind(
-            OrderManagerInterface::class,
+            OrderManagerContract::class,
             OrderManager::class
         );
 
         $this->app->bind(
-            TransactorInterface::class,
+            TransactorContract::class,
             Transactor::class,
         );
     }

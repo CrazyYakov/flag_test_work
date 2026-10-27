@@ -9,16 +9,15 @@ use App\Models\PaymentMethod;
 use App\Models\Product as ProductModel;
 use App\Models\User;
 use Marketplace\Cart\Core\Domain\Entities\Order;
-use Marketplace\Cart\Core\Domain\Values\Enums\OrderStatusEnum;
-use Marketplace\Cart\Infrastructure\Interfaces\OrderManagerInterface;
+use Marketplace\Cart\Core\Ports\OrderManagerContract;
+use Marketplace\Order\Core\Domain\Values\Enums\OrderStatusEnum;
 
-class OrderManager implements OrderManagerInterface
+class OrderManager implements OrderManagerContract
 {
-
     public function createOrder(int $userId, int $paymentMethodId): Order
     {
         $order = new OrderModel;
-        $order->status = OrderStatusEnum::ON_PAYMENT->value;
+        $order->status = OrderStatusEnum::ON_PAYMENT;
         $order->user_id = $userId;
         $order->payment_method_id = $paymentMethodId;
         $order->save();
@@ -51,7 +50,7 @@ class OrderManager implements OrderManagerInterface
                     ->map(function (ProductModel $product) {
                         return [
                             'price' => $product->productInCart->price,
-                            'count' => $product->productInCart->count
+                            'count' => $product->productInCart->count,
                         ];
                     })
             );

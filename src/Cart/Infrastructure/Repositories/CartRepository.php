@@ -7,9 +7,9 @@ use App\Models\User;
 use Marketplace\Cart\Core\Domain\Aggregates\Cart;
 use Marketplace\Cart\Core\Domain\Entities\ProductCart;
 use Marketplace\Cart\Core\Domain\Values\List\ProductInCartList;
-use Marketplace\Cart\Infrastructure\Interfaces\CartRepositoryInterface;
+use Marketplace\Cart\Core\Ports\CartRepositoryContract;
 
-class CartRepository implements CartRepositoryInterface
+class CartRepository implements CartRepositoryContract
 {
     public function getCartByUser(int $userId): Cart
     {

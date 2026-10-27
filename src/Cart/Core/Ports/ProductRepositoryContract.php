@@ -1,10 +1,10 @@
 <?php
 
-namespace Marketplace\Cart\Infrastructure\Interfaces;
+namespace Marketplace\Cart\Core\Ports;
 
 use Marketplace\Cart\Core\Domain\Entities\Product;
 
-interface ProductRepositoryInterface
+interface ProductRepositoryContract
 {
     public function getById(int $id): Product;
 }

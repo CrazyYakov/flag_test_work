@@ -6,9 +6,9 @@ namespace Marketplace\Auth\Infrastructure\Manager;
 
 use Marketplace\Auth\Core\Application\Factories\UserFactory;
 use Marketplace\Auth\Core\Domain\Entities\User;
-use Marketplace\Auth\Infrastructure\Interfaces\UserMangerInterface;
+use Marketplace\Auth\Core\Ports\UserMangerContract;
 
-class UserManager implements UserMangerInterface
+class UserManager implements UserMangerContract
 {
     public function __construct(
         private UserFactory $userFactory
