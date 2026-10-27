@@ -10,21 +10,21 @@ class PaymentTest extends TestCase
     /**
      * A basic test example.
      */
-    public function test_jwtToken(): void
+    public function test_jwt_token(): void
     {
         $payload = [
-            'hello' => 'world'
+            'hello' => 'world',
         ];
 
         $payment = new TokenService(
             'test-token',
-            'test-algorithm',
+            'HS256',
         );
 
         $token = $payment->encodeToken($payload);
 
         $payloadFromToken = $payment->decodeToken($token);
 
-        $this->assertEquals($payload, $payloadFromToken);
+        $this->assertEquals($payload, (array) $payloadFromToken);
     }
 }
