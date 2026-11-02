@@ -49,7 +49,7 @@ services:
     volumes:
       - ./:/var/www/app
       - ./containers/logs/server/:/var/log/nginx/
-      - ./docker/local/config/:/etc/nginx/conf.d/
+      - ./docker/local/nginx/:/etc/nginx/conf.d/
     networks:
       - app
   cache:
