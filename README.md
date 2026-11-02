@@ -25,8 +25,9 @@ Marketplace API
 
 ```
 app/
-├── Application/     # Сервисы приложения, Use Cases (сценарии), DTO
-├── Domain/          # Сущности (Entities), Объекты значения (Value Objects), Агрегаты
+├── Core
+|   ├── Application/     # Сервисы приложения, Use Cases (сценарии), DTO
+|   ├── Domain/          # Сущности (Entities), Объекты значения (Value Objects), Агрегаты
 ├── Infrastructure/  # Реализация репозиториев, кэширования, внешние API
 └── Presentation/    # Контроллеры, API Resources, Middleware
 ```
