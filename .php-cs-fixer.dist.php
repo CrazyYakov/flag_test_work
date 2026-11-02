@@ -15,6 +15,9 @@ return (new Config())
         (new Finder())
             // 💡 root folder to check
             ->in(__DIR__)
+            ->exclude([
+                'bootstrap/cache'
+            ])
 
 
     )
