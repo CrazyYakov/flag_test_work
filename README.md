@@ -33,14 +33,15 @@ app/
 ### Установка
 ```bash
 cp .env.example .env
-composer install
-php artisan key:generate
+docker compose up -d
+docker compose exec app composer i
+docker compose exec app php artisan key:generate
 ```
 
 ### Запуск
 ```bash
-php artisan migrate --seed
-php artisan serve
+docker compose exec app php artisan migrate --seed
+docker compose exec app php artisan serve
 ```
 
 ### Тест
