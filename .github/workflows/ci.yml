@@ -40,9 +40,6 @@ jobs:
       - name: PHP-CS-Fixer (dry run)
         run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
-      - name: Pint (test mode)
-        run: vendor/bin/pint --test
-
   tests:
     name: Tests (PHPUnit)
     runs-on: ubuntu-latest
