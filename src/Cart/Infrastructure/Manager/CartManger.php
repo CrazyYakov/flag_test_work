@@ -6,6 +6,7 @@ namespace Marketplace\Cart\Infrastructure\Manager;
 
 use App\Models\Cart as CartModel;
 use App\Models\Pivot\ProductInCart as ProductInCartModel;
+use App\Models\Product as ProductModel;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Marketplace\Cart\Core\Domain\Aggregates\Cart;
@@ -16,20 +17,22 @@ class CartManger implements CartManagerContract
 {
     public function storeProductInCart(Cart $cart, Product $product): void
     {
-        $cartModel = User::find($cart->userId)->cart;
+        $cartModel = User::findOrFail($cart->userId)->cart;
 
         $productInCartModel = $this->getProductInCart($cartModel, $product);
 
-        $count = $productInCartModel?->count + 1;
+        if ($productInCartModel !== null) {
+            $this->updateCountProductInCart($productInCartModel, $productInCartModel->count + 1);
 
-        $count > 1
-            ? $this->updateCountProductInCart($productInCartModel, $count)
-            : $this->addProductInCart($cartModel, $product);
+            return;
+        }
+
+        $this->addProductInCart($cartModel, $product);
     }
 
     public function removeProductInCart(Cart $cart, Product $product): void
     {
-        $cartModel = User::find($cart->userId)->cart;
+        $cartModel = User::findOrFail($cart->userId)->cart;
 
         $productInCart = $this->getProductInCart($cartModel, $product);
 
@@ -46,7 +49,10 @@ class CartManger implements CartManagerContract
 
     public function getProductInCart(CartModel $cart, Product $product): ?ProductInCartModel
     {
-        return $cart->products()->where('product_id', $product->id)->first()?->productInCart;
+        /** @var ProductModel|null $productModel */
+        $productModel = $cart->products()->where('product_id', $product->id)->first();
+
+        return $productModel?->productInCart;
     }
 
     private function updateCountProductInCart(ProductInCartModel $productInCart, int $count): void
@@ -71,7 +77,7 @@ class CartManger implements CartManagerContract
     public function deleteCart(int $userId): void
     {
         DB::transaction(function () use ($userId) {
-            $user = User::find($userId);
+            $user = User::findOrFail($userId);
 
             $user->cart->products()->detach();
 
@@ -81,7 +87,7 @@ class CartManger implements CartManagerContract
 
     public function createNewCart(int $userId): void
     {
-        $user = User::find($userId);
+        $user = User::findOrFail($userId);
 
         $user->cart()->create();
     }

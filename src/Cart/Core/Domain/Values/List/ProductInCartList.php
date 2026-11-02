@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace Marketplace\Cart\Core\Domain\Values\List;
 
+use Iterator;
 use Marketplace\Cart\Core\Domain\Entities\ProductCart;
 
-class ProductInCartList implements \Iterator
+/**
+ * @implements Iterator<int, ProductCart>
+ */
+class ProductInCartList implements Iterator
 {
+    /** @var array<int, ProductCart> */
     private array $list;
     private int $position;
 
+    /** @param array<int, ProductCart> $list */
     public function __construct(array $list)
     {
         $this->list = $list;

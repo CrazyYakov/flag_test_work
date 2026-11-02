@@ -37,7 +37,7 @@ class Order
             $total += $product->quantity;
         }
 
-        return $total;
+        return (int) $total;
     }
 
 }

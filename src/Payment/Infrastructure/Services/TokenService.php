@@ -13,6 +13,7 @@ class TokenService
         private readonly string $alg,
     ) {}
 
+    /** @param array<string, mixed> $payload */
     public function encodeToken(array $payload): string
     {
         return JWT::encode($payload, $this->tokenKey, $this->alg);

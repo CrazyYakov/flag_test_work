@@ -7,11 +7,16 @@ namespace Marketplace\Order\Core\Domain\Values\List;
 use Iterator;
 use Marketplace\Order\Core\Domain\Entities\Product;
 
+/**
+ * @implements Iterator<int, Product>
+ */
 class ProductList implements Iterator, \Countable
 {
+    /** @var array<int, Product> */
     private array $list;
     private int $position;
 
+    /** @param array<int, Product> $list */
     public function __construct(array $list)
     {
         $this->list = $list;

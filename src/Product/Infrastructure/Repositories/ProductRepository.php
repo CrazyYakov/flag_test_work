@@ -3,6 +3,7 @@
 namespace Marketplace\Product\Infrastructure\Repositories;
 
 use App\Models\Product as ProductModel;
+use Illuminate\Database\Eloquent\Collection;
 use Marketplace\Product\Core\Domain\Entities\Product;
 use Marketplace\Product\Core\Domain\Factories\ProductFactory;
 use Marketplace\Product\Core\Domain\Values\Lists\ProductList;
@@ -31,8 +32,11 @@ class ProductRepository implements ProductRepositoryContract
 
         $builder = $sorter->apply($builder);
 
+        /** @var Collection<int, ProductModel> $productModels */
+        $productModels = $builder->get();
+
         return new ProductList(
-            $builder->get()
+            $productModels
                 ->map(fn(ProductModel $model) => $this->productFactory->create($model->toArray()))
                 ->all()
         );

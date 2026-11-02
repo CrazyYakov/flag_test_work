@@ -11,11 +11,19 @@ use Marketplace\Order\Core\Domain\Aggregates\Order;
  */
 class OrderResource extends JsonResource
 {
+    /**
+     * @var array<string, string>
+     */
     public $with = [
         'message' => 'order',
         'status' => 'success',
     ];
 
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
     public function toArray(Request $request): array
     {
         return [

@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CreateResponse implements Responsable
 {
+    /**
+     * @param Arrayable<string, mixed>|null $data
+     */
     public function __construct(
         private ?Arrayable $data = null,
     ) {}

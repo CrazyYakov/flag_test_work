@@ -27,7 +27,8 @@ class PayCartControllerTest extends TestCase
 
         $token = $user->createToken('test_api')->plainTextToken;
 
-        $paymentMethodId = PaymentMethod::firstWhere('slug', $paymentMethod)
+        $paymentMethodId = PaymentMethod::where('slug', $paymentMethod)
+            ->firstOrFail()
             ->getKey();
 
         $this->withToken($token)
@@ -43,6 +44,7 @@ class PayCartControllerTest extends TestCase
         ]);
     }
 
+    /** @return array<int, list<string>> */
     public static function dataPaymentMethodProvider(): array
     {
         return [

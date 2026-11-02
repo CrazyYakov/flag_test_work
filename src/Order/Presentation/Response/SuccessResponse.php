@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 final readonly class SuccessResponse implements Responsable
 {
+    /**
+     * @param Arrayable<string, mixed>|null $data
+     */
     public function __construct(
         private ?Arrayable $data = null,
     ) {}
@@ -18,7 +21,7 @@ final readonly class SuccessResponse implements Responsable
     {
         return response()->json([
             'status' => 'success',
-            'data' => $this->data->toArray(),
+            'data' => $this->data?->toArray(),
         ], Response::HTTP_OK);
     }
 }

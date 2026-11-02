@@ -11,16 +11,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @property int $user_id
  *
- * @property-read  User $user
- * @property-read  Collection|Product[] $products
+ * @property-read User $user
+ * @property-read Collection<int, Product> $products
  */
 class Cart extends Model
 {
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /** @return BelongsToMany<Product, $this> */
     public function products(): BelongsToMany
     {
         return $this

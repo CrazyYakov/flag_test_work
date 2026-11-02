@@ -9,6 +9,9 @@ use Illuminate\Support\Arr;
 use Marketplace\Cart\Core\Domain\Entities\ProductCart;
 use Marketplace\Cart\Core\Domain\Values\List\ProductInCartList;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class ProductInCartListView implements Arrayable
 {
     public function __construct(

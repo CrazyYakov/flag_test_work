@@ -6,14 +6,14 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * @property-read array $data
+ * @property-read array<string, mixed> $data
  */
 class StoreRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, ValidationRule|array|string>
+     * @return array<string, string|list<string>|ValidationRule>
      */
     public function rules(): array
     {

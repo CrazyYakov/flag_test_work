@@ -9,6 +9,9 @@ use Illuminate\Support\Arr;
 use Marketplace\Product\Core\Domain\Entities\Product;
 use Marketplace\Product\Core\Domain\Values\Lists\ProductList;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class ProductListView implements Arrayable
 {
     public function __construct(

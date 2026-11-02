@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,13 +19,14 @@ use Marketplace\Auth\Infrastructure\Observers\UserObserver;
 #[ObservedBy(UserObserver::class)]
 class User extends Authenticatable
 {
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
     use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'name',
@@ -44,6 +46,7 @@ class User extends Authenticatable
         ];
     }
 
+    /** @return HasOne<Cart, $this> */
     public function cart(): HasOne
     {
         return $this->hasOne(Cart::class);

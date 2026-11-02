@@ -6,6 +6,9 @@ namespace Marketplace\Payment\Presentation\View;
 
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class UrlView implements Arrayable
 {
     public function __construct(

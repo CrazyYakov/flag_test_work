@@ -30,9 +30,9 @@ class OrderManager implements OrderManagerContract
 
     public function generateUrl(Order $order): void
     {
-        $orderModel = OrderModel::find($order->id);
+        $orderModel = OrderModel::findOrFail($order->id);
 
-        $orderModel->url = PaymentMethod::find($order->paymentMethodId)
+        $orderModel->url = PaymentMethod::findOrFail($order->paymentMethodId)
             ->getClass()
             ->generateUrlForOrder($order->id);
 
@@ -41,7 +41,7 @@ class OrderManager implements OrderManagerContract
 
     private function moveProductCartToOrder(int $userId, OrderModel $order): void
     {
-        $user = User::find($userId);
+        $user = User::findOrFail($userId);
 
         $order->products()
             ->sync(
@@ -49,6 +49,8 @@ class OrderManager implements OrderManagerContract
                     ->products
                     ->keyBy('id')
                     ->map(function (ProductModel $product) {
+                        assert($product->productInCart !== null);
+
                         return [
                             'price' => $product->productInCart->price,
                             'count' => $product->productInCart->count,

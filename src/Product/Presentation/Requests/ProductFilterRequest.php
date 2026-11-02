@@ -2,6 +2,7 @@
 
 namespace Marketplace\Product\Presentation\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -11,6 +12,11 @@ use Illuminate\Validation\Rule;
  */
 class ProductFilterRequest extends FormRequest
 {
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, string|list<string>|ValidationRule>
+     */
     public function rules(): array
     {
         return [

@@ -17,8 +17,14 @@ class PayCartController
 
     public function __invoke(Request $request, int $paymentMethodId): Responsable
     {
+        $user = $request->user();
+
+        if ($user === null) {
+            abort(401);
+        }
+
         $this->payCartAction->run(
-            $request->user()->id,
+            $user->id,
             $paymentMethodId,
         );
 

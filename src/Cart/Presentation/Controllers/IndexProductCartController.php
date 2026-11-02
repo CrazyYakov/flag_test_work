@@ -18,7 +18,13 @@ class IndexProductCartController
 
     public function __invoke(Request $request): Responsable
     {
-        $cart = $this->cartRepository->getCartByUser($request->user()->id);
+        $user = $request->user();
+
+        if ($user === null) {
+            abort(401);
+        }
+
+        $cart = $this->cartRepository->getCartByUser($user->id);
 
         return new SuccessResponse(
             new ProductInCartListView($cart->productInCartList)

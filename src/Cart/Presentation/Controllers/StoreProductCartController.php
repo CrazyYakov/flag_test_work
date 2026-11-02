@@ -18,7 +18,13 @@ class StoreProductCartController
 
     public function __invoke(Request $request, int $id): Responsable
     {
-        $this->action->run($request->user()->id, $id);
+        $user = $request->user();
+
+        if ($user === null) {
+            abort(401);
+        }
+
+        $this->action->run($user->id, $id);
 
         return new SuccessResponse();
     }

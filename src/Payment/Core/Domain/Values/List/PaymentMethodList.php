@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace Marketplace\Payment\Core\Domain\Values\List;
 
+use Iterator;
 use Marketplace\Payment\Core\Domain\Entities\PaymentMethod;
 
+/**
+ * @implements Iterator<int, PaymentMethod>
+ */
 class PaymentMethodList implements \Iterator
 {
+    /** @var array<int, PaymentMethod> */
     private array $list;
     private int $position;
 
+    /** @param array<int, PaymentMethod> $productList */
     public function __construct(array $productList)
     {
         $this->list = $productList;

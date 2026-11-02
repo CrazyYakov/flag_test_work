@@ -16,9 +16,9 @@ class UserManager implements UserMangerContract
 
     public function createToken(User $user): string
     {
-        $user = \App\Models\User::query()->find($user->id);
+        $model = \App\Models\User::query()->findOrFail($user->id);
 
-        return $user->createToken('token')->plainTextToken;
+        return $model->createToken('token')->plainTextToken;
     }
 
     public function createUser(string $email, string $name, string $password): User

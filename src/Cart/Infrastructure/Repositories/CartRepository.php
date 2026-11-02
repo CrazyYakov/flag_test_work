@@ -17,6 +17,8 @@ class CartRepository implements CartRepositoryContract
 
         $productList = $cartModel->products
             ->map(function (Product $product) {
+                assert($product->productInCart !== null);
+
                 return new ProductCart(
                     $product->id,
                     $product->productInCart->price,

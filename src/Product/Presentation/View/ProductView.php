@@ -7,6 +7,9 @@ namespace Marketplace\Product\Presentation\View;
 use Illuminate\Contracts\Support\Arrayable;
 use Marketplace\Product\Core\Domain\Entities\Product;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class ProductView implements Arrayable
 {
     public function __construct(

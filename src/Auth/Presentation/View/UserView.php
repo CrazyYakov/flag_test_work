@@ -6,6 +6,9 @@ namespace Marketplace\Auth\Presentation\View;
 
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class UserView implements Arrayable
 {
     public function __construct(

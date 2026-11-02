@@ -9,6 +9,9 @@ use Illuminate\Support\Arr;
 use Marketplace\Payment\Core\Domain\Entities\PaymentMethod;
 use Marketplace\Payment\Core\Domain\Values\List\PaymentMethodList;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class PaymentMethodListView implements Arrayable
 {
     public function __construct(

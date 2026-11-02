@@ -8,12 +8,13 @@ use Marketplace\Product\Core\Domain\Entities\Product;
 
 class ProductFactory
 {
+    /** @param array<string, mixed> $data */
     public function create(array $data): Product
     {
         return new Product(
-            $data['id'],
-            $data['title'],
-            $data['price'],
+            (int) $data['id'],
+            (string) $data['title'],
+            (float) $data['price'],
         );
     }
 }

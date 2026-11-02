@@ -23,7 +23,7 @@ readonly class AuthorizationController
     {
         $user = $this->userRepository->getByEmail($request->email);
 
-        if (! $user->checkPassword($request->password)) {
+        if ($user === null || ! $user->checkPassword($request->password)) {
             return new UnauthorizedResponse();
         }
 

@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class RemoveProductCartControllerTest extends TestCase
 {
-    public function testBasic()
+    public function testBasic(): void
     {
         $product = $this->getRandomProduct();
 

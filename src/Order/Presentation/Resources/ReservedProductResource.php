@@ -11,6 +11,9 @@ use Marketplace\Order\Core\Domain\Entities\Product;
  */
 class ReservedProductResource extends JsonResource
 {
+    /**
+     * @var array<string, string>
+     */
     public $with = [
         'message' => 'reserved product',
         'status' => 'success',

@@ -4,9 +4,9 @@ namespace Marketplace\Order\Infrastructure\Repositories;
 
 use App\Models\Order as OrderModel;
 use App\Models\Product as ProductModel;
+use Illuminate\Database\Eloquent\Collection;
 use Marketplace\Order\Core\Domain\Aggregates\Order;
 use Marketplace\Order\Core\Domain\Entities\Product;
-use Marketplace\Order\Core\Domain\Values\Enums\OrderStatusEnum;
 use Marketplace\Order\Core\Domain\Values\Enums\PaymentMethodEnum;
 use Marketplace\Order\Core\Domain\Values\List\OrderList;
 use Marketplace\Order\Core\Domain\Values\List\ProductList;
@@ -24,7 +24,10 @@ class OrderRepository implements OrderRepositoryContract
 
         $query = $sorter->apply($query);
 
-        $orders = $query->get()
+        /** @var Collection<int, OrderModel> $orderModels */
+        $orderModels = $query->get();
+
+        $orders = $orderModels
             ->map(fn(OrderModel $order) => $this->makeOrder($order))
             ->all();
 
@@ -54,14 +57,16 @@ class OrderRepository implements OrderRepositoryContract
 
     protected function makeOrder(OrderModel $model): Order
     {
+        /** @var Collection<int, ProductModel> $productModels */
+        $productModels = $model->products()->get();
+
         $productList = new ProductList(
-            $model->products()
-                ->get()
+            $productModels
                 ->map(fn(ProductModel $product) => new Product(
-                    $product->id,
+                    (string) $product->id,
                     $product->title,
-                    $product->reservedProduct->price,
-                    $product->reservedProduct->count,
+                    $product->reservedProduct->price ?? 0.0,
+                    $product->reservedProduct->count ?? 0,
                 ))
                 ->all()
         );
@@ -69,7 +74,7 @@ class OrderRepository implements OrderRepositoryContract
         return new Order(
             $model->id,
             $productList,
-            OrderStatusEnum::from($model->status->slug),
+            $model->status,
             PaymentMethodEnum::from($model->paymentMethod->slug),
             $model->url,
         );

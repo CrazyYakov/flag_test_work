@@ -8,12 +8,13 @@ use Marketplace\Auth\Core\Domain\Entities\User;
 
 class UserFactory
 {
+    /** @param array<string, mixed> $data */
     public function create(array $data): User
     {
         return new User(
-            $data['id'],
-            $data['email'],
-            $data['password'],
+            (int) $data['id'],
+            (string) $data['email'],
+            (string) $data['password'],
         );
     }
 }

@@ -7,11 +7,16 @@ namespace Marketplace\Order\Core\Domain\Values\List;
 use Iterator;
 use Marketplace\Order\Core\Domain\Aggregates\Order;
 
+/**
+ * @implements Iterator<int, Order>
+ */
 class OrderList implements Iterator
 {
+    /** @var array<int, Order> */
     private array $list;
     private int $position;
 
+    /** @param array<int, Order> $list */
     public function __construct(array $list)
     {
         $this->list = $list;

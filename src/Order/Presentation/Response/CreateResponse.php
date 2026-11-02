@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CreateResponse implements Responsable
 {
     public function __construct(
+        /** @var Arrayable<string, mixed>|null */
         private ?Arrayable $data = null,
     ) {}
 
@@ -18,7 +19,7 @@ class CreateResponse implements Responsable
     {
         return response()->json([
             'status' => 'success',
-            'data' => $this->data->toArray(),
+            'data' => $this->data?->toArray(),
         ], Response::HTTP_CREATED);
     }
 }

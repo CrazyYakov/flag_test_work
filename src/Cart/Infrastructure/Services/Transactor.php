@@ -11,7 +11,6 @@ class Transactor implements TransactorContract
 {
     public function withTransaction(callable $transaction): void
     {
-        DB::transaction($transaction);
-
+        DB::transaction(static fn(): mixed => $transaction());
     }
 }

@@ -7,13 +7,14 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Seed the application seeds.
+     *
+     * @return void
      */
     public function run(): void
     {
         $this->call([
             PaymentMethodSeeder::class,
-            StatusSeeder::class,
         ]);
     }
 }

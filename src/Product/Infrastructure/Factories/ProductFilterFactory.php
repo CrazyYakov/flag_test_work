@@ -9,10 +9,11 @@ use Marketplace\Product\Infrastructure\Services\ProductFilter;
 
 class ProductFilterFactory
 {
+    /** @param array<string, mixed> $data */
     public function create(array $data): FilterContract
     {
         return new ProductFilter(
-            price: $data['filter_price'] ?? null,
+            price: isset($data['filter_price']) ? (float) $data['filter_price'] : null,
         );
     }
 }

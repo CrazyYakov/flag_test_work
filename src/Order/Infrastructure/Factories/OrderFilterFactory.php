@@ -10,10 +10,11 @@ use Marketplace\Order\Infrastructure\Services\OrderFilter;
 
 class OrderFilterFactory
 {
+    /** @param array<string, mixed> $data */
     public function create(array $data): FilterContract
     {
         return new OrderFilter(
-            status: OrderStatusEnum::from($data['filter_status']),
+            status: OrderStatusEnum::from((int) $data['filter_status']),
         );
     }
 }
