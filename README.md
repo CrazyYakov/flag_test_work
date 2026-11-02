@@ -13,11 +13,11 @@ Marketplace API
 - Язык: PHP 8.2.
 - Фреймворк: Laravel 11.
 - Архитектура: DDD (Layers: Application, Domain, Infrastructure).
-- Базы данных: PostgreSQL.
+- Базы данных: PostgreSQL, Redis.
 - Контейнеризация: Docker, Docker Compose.
 - Тестирование: PHP Unit, функциональные тесты.
 - Статический анализ: PHPStan (Level 8), PHP CS Fixer.
-- Grafana.
+- Мониторинг базы данных Grafana.
 
 # 🏗 Архитектура
 
@@ -42,38 +42,17 @@ docker compose exec app php artisan key:generate
 ### Запуск
 ```bash
 docker compose exec app php artisan migrate --seed
-docker compose exec app php artisan serve
 ```
 
 ### Тест
 ```bash
-php artisan test
+docker compose exec app php artisan test
 ```
 
 # 📚 Основные API Endpoints
 
-#### Auth
-* **POST** _/api/auth/registration_ - регистрация
-* **POST** _/api/auth/authorization_ - авторизация
-
-#### Cart
-* **GET** _/api/cart_ - корзина
-* **POST** _/api/cart/{id}_ - Добавить товар в корзину
-* **DELETE** _/api/cart/{id}_ - Удалить товар из корзины
-* **POST** _/api/cart/pay/{paymentMethodId}_ - оплатить корзину
-
-#### Product
-* **GET** _/api/products_ - список товаров
-* **GET** _/api/products/{id}_ - детальная информация о товаре
-
-#### Payment
-* **GET** _/api/payment/methods_ - список способов оплат
-* **GET** _/api/payment/generate/url/{PaymentMethodEnum}_ - сгенерировать ссылку
-
-#### Order
-* **GET** _/api/orders_ - список заказов
-* **GET** _/api/orders/{id}_ - детальная информация о заказе
-* **POST** _/api/orders/payed/{id}_ - оплатить заказ (куда ведет сгенерированная ссылка)
+API Маршруты генерируются с помощью библиотеки l5-swagger.
+Для просмотра маршрутов можете посмотреть здесь: http://localhost:8000/api/documentation 
 
 ---
 
