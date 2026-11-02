@@ -22,3 +22,7 @@ yarn-error.log
 /.vscode
 /.zed
 /containers
+
+# PHP CS Fixer configuration
+/.php-cs-fixer.cache
+/.php-cs-fixer.php
