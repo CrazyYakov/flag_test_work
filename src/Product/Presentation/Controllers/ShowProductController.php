@@ -8,13 +8,56 @@ use Illuminate\Contracts\Support\Responsable;
 use Marketplace\Product\Core\Ports\ProductRepositoryContract;
 use Marketplace\Product\Presentation\Responses\SuccessResponse;
 use Marketplace\Product\Presentation\View\ProductView;
+use OpenApi\Attributes\Get;
+use OpenApi\Attributes\JsonContent;
+use OpenApi\Attributes\Parameter;
+use OpenApi\Attributes\Property;
+use OpenApi\Attributes\Response;
+use OpenApi\Attributes\Schema;
+use OpenApi\Attributes\Tag;
 
+#[Tag(name: 'Product')]
 readonly class ShowProductController
 {
     public function __construct(
         private ProductRepositoryContract $productRepository
     ) {}
 
+    #[Get(
+        path: '/api/products/{id}',
+        operationId: 'getProduct',
+        tags: ['Product'],
+        summary: 'Получение продукта по ID',
+        parameters: [
+            new Parameter(
+                parameter: 'id',
+                name: 'id',
+                required: true,
+                in: 'path',
+                schema: new Schema(type: 'integer')
+            ),
+        ],
+        responses: [
+            new Response(
+                response: 200,
+                description: 'Продукт найден',
+                content: new JsonContent(
+                    properties: [
+                        new Property(property: 'status', type: 'string', example: 'success'),
+                        new Property(
+                            property: 'data',
+                            type: 'object',
+                            properties: [
+                                new Property(property: 'id', type: 'integer', example: 1),
+                                new Property(property: 'title', type: 'string', example: 'Product Name'),
+                                new Property(property: 'price', type: 'number', format: 'float', example: 100.50),
+                            ],
+                        ),
+                    ],
+                ),
+            ),
+        ]
+    )]
     public function __invoke(int $id): Responsable
     {
         $product = $this->productRepository->getById($id);

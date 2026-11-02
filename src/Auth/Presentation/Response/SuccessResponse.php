@@ -21,7 +21,7 @@ final readonly class SuccessResponse implements Responsable
     {
         return response()->json([
             'status' => 'success',
-            'data' => $this->data,
+            'data' => $this->data->toArray(),
         ], Response::HTTP_OK);
     }
 }

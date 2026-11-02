@@ -26,3 +26,7 @@ yarn-error.log
 # PHP CS Fixer configuration
 /.php-cs-fixer.cache
 /.php-cs-fixer.php
+
+# apps
+storage/api-docs/api-docs.json
+storage/openapi.yaml
