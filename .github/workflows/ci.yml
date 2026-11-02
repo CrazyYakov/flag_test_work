@@ -37,6 +37,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
+      - name: clear cache
+        run: php artisan optimize:clear
+
       - name: PHP-CS-Fixer (dry run)
         run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
