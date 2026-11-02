@@ -3,6 +3,33 @@
 Это тестовое задание написана для кампании "Студия Флаг".
 REST-api для онлайн магазина.
 
+# Описание
+
+Marketplace API
+
+Современный REST API для торговой площадки, реализованный с применением принципов Domain-Driven Design (DDD) и Clean Architecture. Проект демонстрирует декомпозицию бизнес-логики, отказоустойчивость и работу с микросервисной архитектурой.
+
+# 🚀 Технологический стек
+- Язык: PHP 8.2
+- Фреймворк: Laravel 11
+- Архитектура: DDD (Layers: Application, Domain, Infrastructure)
+- Базы данных: PostgreSQL
+- Контейнеризация: Docker, Docker Compose
+- Тестирование: PHP Unit, функциональные тесты 
+- Статический анализ: PHPStan (Level 8), PHP CS Fixer
+
+# 🏗 Архитектура
+
+Проект строго следует принципам DDD для отделения бизнес-правил от инфраструктуры:
+
+```
+app/
+├── Application/     # Сервисы приложения, Use Cases (сценарии), DTO
+├── Domain/          # Сущности (Entities), Объекты значения (Value Objects), Агрегаты
+├── Infrastructure/  # Реализация репозиториев, кэширования, внешние API
+└── Presentation/    # Контроллеры, API Resources, Middleware
+```
+
 ### Установка
 ```bash
 cp .env.example .env
@@ -21,7 +48,7 @@ php artisan serve
 php artisan test
 ```
 
-### Маршруты
+# 📚 Основные API Endpoints
 
 #### Auth
 * **POST** _/api/auth/registration_ - регистрация
@@ -45,3 +72,12 @@ php artisan test
 * **GET** _/api/orders_ - список заказов
 * **GET** _/api/orders/{id}_ - детальная информация о заказе
 * **POST** _/api/orders/payed/{id}_ - оплатить заказ (куда ведет сгенерированная ссылка)
+
+---
+
+👨‍💻 Автор
+
+Яков Рочев — Backend Developer.
+
+- Telegram: @YakovPR
+- GitHub: @CrazyYakov
