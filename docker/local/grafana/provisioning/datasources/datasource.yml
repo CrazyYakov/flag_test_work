@@ -1,0 +1,22 @@
+# Provisioned PostgreSQL datasource for the app database.
+# DB_* variables are passed to the grafana container in docker-compose.yml
+# and expanded by Grafana when this file is loaded.
+# Bare $VAR syntax is used on purpose: ${VAR} would trigger double expansion
+# and corrupt values containing "$" (e.g. the default DB_PASSWORD).
+apiVersion: 1
+
+datasources:
+  - name: PostgreSQL
+    uid: postgres-app
+    type: postgres
+    access: proxy
+    url: database:5432
+    user: $DB_USERNAME
+    secureJsonData:
+      password: $DB_PASSWORD
+    jsonData:
+      database: $DB_DATABASE
+      sslmode: disable
+      postgresVersion: 1700
+    isDefault: true
+    editable: true

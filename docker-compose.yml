@@ -63,6 +63,30 @@ services:
       interval: 5s
       timeout: 3s
       retries: 20
+  grafana:
+    container_name: ${DOCKER_CONTAINER_NAME}_GRAFANA
+    tty: true
+    image: grafana/grafana:11.3.0
+    # Bind-mounted data dir (created by Docker as root) is not writable
+    # by the image's default "grafana" (472) user.
+    user: root
+    restart: unless-stopped
+    depends_on:
+      - database
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      # Used by the datasource provisioning (docker/local/grafana/provisioning)
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./containers/data/grafana:/var/lib/grafana
+      - ./docker/local/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    ports:
+      - ${DOCKER_PUBLIC_GRAFANA_PORT}:3000
+    networks:
+      - app
 networks:
   app:
     driver: bridge
