@@ -11,7 +11,5 @@ readonly class ProductCart
         public float  $price,
         public int    $count,
         public string $title,
-    )
-    {
-    }
+    ) {}
 }

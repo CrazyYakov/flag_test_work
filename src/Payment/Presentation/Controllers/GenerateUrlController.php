@@ -15,9 +15,7 @@ class GenerateUrlController
 {
     public function __construct(
         private GenerateUrlForPayedOrderAction $action,
-    )
-    {
-    }
+    ) {}
 
     public function __invoke(Request $request, PaymentMethodEnum $paymentMethod): Responsable
     {

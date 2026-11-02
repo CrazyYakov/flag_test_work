@@ -27,7 +27,7 @@ class ReservedProductResource extends JsonResource
             'id' => $this->resource->id,
             'title' => $this->resource->title,
             'price' => $this->resource->price,
-            'quantity' => $this->resource->quantity
+            'quantity' => $this->resource->quantity,
         ];
     }
 }

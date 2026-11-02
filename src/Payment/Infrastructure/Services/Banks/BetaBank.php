@@ -19,7 +19,7 @@ class BetaBank implements PaymentMethodContract
         ];
 
         return url("/api/payment/pay/" . PaymentMethodEnum::BETA_BANK->value, [
-            'token' => $this->payment->encodeToken($payload)
+            'token' => $this->payment->encodeToken($payload),
         ]);
     }
 

@@ -12,9 +12,7 @@ class OrderSorter implements SorterContract
     public function __construct(
         private OrderSorterEnum $orderColumn,
         private string          $direction,
-    )
-    {
-    }
+    ) {}
 
     public function apply(Builder $builder): Builder
     {

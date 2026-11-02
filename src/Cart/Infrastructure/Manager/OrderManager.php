@@ -16,7 +16,7 @@ class OrderManager implements OrderManagerContract
 {
     public function createOrder(int $userId, int $paymentMethodId): Order
     {
-        $order = new OrderModel;
+        $order = new OrderModel();
         $order->status = OrderStatusEnum::ON_PAYMENT;
         $order->user_id = $userId;
         $order->payment_method_id = $paymentMethodId;

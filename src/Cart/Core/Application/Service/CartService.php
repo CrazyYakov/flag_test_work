@@ -12,9 +12,7 @@ class CartService
     public function __construct(
         private CartManagerContract $cartManager,
         private TransactorContract $transactor
-    )
-    {
-    }
+    ) {}
 
     public function deleteOldCartAndCreateNew(int $userId): void
     {

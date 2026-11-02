@@ -23,12 +23,12 @@ class AuthorizationRequest extends FormRequest
                 'required',
                 'email',
                 'max:255',
-                'exists:users,email'
+                'exists:users,email',
             ],
             'password' => [
                 'required',
-                'string'
-            ]
+                'string',
+            ],
         ];
     }
 }

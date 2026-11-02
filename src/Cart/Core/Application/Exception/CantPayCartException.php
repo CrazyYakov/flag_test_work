@@ -6,7 +6,4 @@ namespace Marketplace\Cart\Core\Application\Exception;
 
 use Exception;
 
-class CantPayCartException extends Exception
-{
-
-}
+class CantPayCartException extends Exception {}

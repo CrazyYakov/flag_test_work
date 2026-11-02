@@ -6,11 +6,11 @@ namespace Marketplace\Order\Core\Domain\Values\Enums;
 
 enum OrderStatusEnum: int
 {
-     case ON_PAYMENT = 1;
+    case ON_PAYMENT = 1;
 
-     case PAID = 2;
+    case PAID = 2;
 
-     case CANCELED = 3;
+    case CANCELED = 3;
 
     public function label(): string
     {
@@ -19,5 +19,5 @@ enum OrderStatusEnum: int
             self::PAID => 'Оплачено',
             self::CANCELED => 'Отменен',
         };
-     }
+    }
 }

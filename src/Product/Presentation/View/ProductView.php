@@ -11,9 +11,7 @@ class ProductView implements Arrayable
 {
     public function __construct(
         private Product $product
-    )
-    {
-    }
+    ) {}
 
     /**
      * @inheritDoc

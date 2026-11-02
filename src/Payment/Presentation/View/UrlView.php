@@ -10,9 +10,7 @@ class UrlView implements Arrayable
 {
     public function __construct(
         public string $url
-    )
-    {
-    }
+    ) {}
 
     /**
      * @inheritDoc
@@ -20,7 +18,7 @@ class UrlView implements Arrayable
     public function toArray(): array
     {
         return [
-            'url' => $this->url
+            'url' => $this->url,
         ];
     }
 }

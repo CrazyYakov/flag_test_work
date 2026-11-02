@@ -21,7 +21,7 @@ class StoreRequest extends FormRequest
             'data.payment_method_id' => [
                 'int',
                 'required',
-                'exists:payment_methods,id'
+                'exists:payment_methods,id',
             ],
         ];
     }

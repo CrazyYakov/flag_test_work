@@ -25,7 +25,7 @@ class RegistrationRequest extends FormRequest
                 'required',
                 'email',
                 Rule::unique('users'),
-                'max:255'
+                'max:255',
             ],
             'password' => [
                 'required',
@@ -36,8 +36,8 @@ class RegistrationRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                'max:255'
-            ]
+                'max:255',
+            ],
         ];
     }
 }

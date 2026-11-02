@@ -13,9 +13,7 @@ class RemoveProductCartController
 {
     public function __construct(
         private RemoveProductFromCartAction $action
-    )
-    {
-    }
+    ) {}
 
     public function __invoke(Request $request, int $id): Responsable
     {

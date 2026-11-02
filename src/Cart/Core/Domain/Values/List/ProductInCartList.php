@@ -8,7 +8,6 @@ use Marketplace\Cart\Core\Domain\Entities\ProductCart;
 
 class ProductInCartList implements \Iterator
 {
-
     private array $list;
     private int $position;
 

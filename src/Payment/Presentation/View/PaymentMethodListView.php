@@ -20,7 +20,7 @@ class PaymentMethodListView implements Arrayable
         return Arr::map(iterator_to_array($this->list), function (PaymentMethod $paymentMethod) {
             return [
                 'id' => $paymentMethod->id,
-                'title' => $paymentMethod->title
+                'title' => $paymentMethod->title,
             ];
         });
     }

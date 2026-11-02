@@ -17,7 +17,7 @@ class PaymentMethodRepository implements PaymentMethodRepositoryContract
             PaymentMethodModel::query()
                 ->get()
                 ->map(
-                    fn (PaymentMethodModel $paymentMethod) => new PaymentMethod($paymentMethod->id, $paymentMethod->title)
+                    fn(PaymentMethodModel $paymentMethod) => new PaymentMethod($paymentMethod->id, $paymentMethod->title)
                 )
                 ->all()
         );

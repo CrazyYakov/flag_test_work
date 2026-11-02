@@ -22,9 +22,9 @@ class CartManger implements CartManagerContract
 
         $count = $productInCartModel?->count + 1;
 
-        $count > 1 ?
-            $this->updateCountProductInCart($productInCartModel, $count) :
-            $this->addProductInCart($cartModel, $product);
+        $count > 1
+            ? $this->updateCountProductInCart($productInCartModel, $count)
+            : $this->addProductInCart($cartModel, $product);
     }
 
     public function removeProductInCart(Cart $cart, Product $product): void
@@ -39,9 +39,9 @@ class CartManger implements CartManagerContract
 
         $count = $productInCart->count - 1;
 
-        $count > 0 ?
-            $this->updateCountProductInCart($productInCart, $count) :
-            $this->detachProductInCart($cartModel, $product);
+        $count > 0
+            ? $this->updateCountProductInCart($productInCart, $count)
+            : $this->detachProductInCart($cartModel, $product);
     }
 
     public function getProductInCart(CartModel $cart, Product $product): ?ProductInCartModel
@@ -59,7 +59,7 @@ class CartManger implements CartManagerContract
     {
         $cart->products()->attach($product->id, [
             'price' => $product->price,
-            'count' => 1
+            'count' => 1,
         ]);
     }
 

@@ -9,7 +9,6 @@ use Marketplace\Cart\Core\Ports\TransactorContract;
 
 class Transactor implements TransactorContract
 {
-
     public function withTransaction(callable $transaction): void
     {
         DB::transaction($transaction);

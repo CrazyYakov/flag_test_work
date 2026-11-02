@@ -13,7 +13,7 @@ final class UnauthorizedResponse implements Responsable
     {
         return response()->json([
             'status' => 'error',
-            'message' => 'Unauthorized'
+            'message' => 'Unauthorized',
         ], Response::HTTP_UNAUTHORIZED);
     }
 }

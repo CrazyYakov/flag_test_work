@@ -33,7 +33,7 @@ class ProductRepository implements ProductRepositoryContract
 
         return new ProductList(
             $builder->get()
-                ->map(fn (ProductModel $model) => $this->productFactory->create($model->toArray()))
+                ->map(fn(ProductModel $model) => $this->productFactory->create($model->toArray()))
                 ->all()
         );
     }

@@ -13,9 +13,7 @@ class PayCartController
 {
     public function __construct(
         private PayCartAction $payCartAction
-    )
-    {
-    }
+    ) {}
 
     public function __invoke(Request $request, int $paymentMethodId): Responsable
     {

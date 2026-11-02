@@ -21,7 +21,7 @@ class AlphaBank implements PaymentMethodContract
         $token = $this->payment->encodeToken($payload);
 
         return url()->query("/api/payment/pay/" . PaymentMethodEnum::ALPHA_BANK->value, [
-            'token' => $token
+            'token' => $token,
         ]);
     }
 

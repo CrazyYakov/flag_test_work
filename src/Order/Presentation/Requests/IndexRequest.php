@@ -20,11 +20,11 @@ class IndexRequest extends FormRequest
     {
         return [
             'filter_status' => [
-                'int'
+                'int',
             ],
             'sort_created_at' => [
-                'string'
-            ]
+                'string',
+            ],
         ];
     }
 }

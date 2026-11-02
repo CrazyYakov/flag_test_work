@@ -19,8 +19,8 @@ class ProductFilterRequest extends FormRequest
             ],
             'sort_price_dir' => [
                 'string',
-                Rule::in(['asc', 'desc'])
-            ]
+                Rule::in(['asc', 'desc']),
+            ],
         ];
     }
 }

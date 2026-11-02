@@ -20,8 +20,8 @@ class PaymentServiceProvider extends ServiceProvider
             ->needs(TokenService::class)
             ->give(function () {
                 return new TokenService(
-                   tokenKey: config('domain.payment.methods.alpha_bank.token_key'),
-                   alg: config('domain.payment.methods.alpha_bank.alg')
+                    tokenKey: config('domain.payment.methods.alpha_bank.token_key'),
+                    alg: config('domain.payment.methods.alpha_bank.alg')
                 );
             });
 

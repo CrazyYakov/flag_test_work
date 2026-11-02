@@ -25,7 +25,7 @@ class OrderRepository implements OrderRepositoryContract
         $query = $sorter->apply($query);
 
         $orders = $query->get()
-            ->map(fn (OrderModel $order) => $this->makeOrder($order))
+            ->map(fn(OrderModel $order) => $this->makeOrder($order))
             ->all();
 
         return new OrderList($orders);
