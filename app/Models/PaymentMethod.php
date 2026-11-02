@@ -15,11 +15,11 @@ class PaymentMethod extends Model
     protected $fillable = [
         'title',
         'slug',
-        'class'
+        'class',
     ];
 
     protected $hidden = [
-        'class'
+        'class',
     ];
 
     public $timestamps = false;

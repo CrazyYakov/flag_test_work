@@ -19,7 +19,7 @@ use Marketplace\Order\Core\Domain\Values\Enums\OrderStatusEnum;
 class Order extends Model
 {
     protected $hidden = [
-        'url'
+        'url',
     ];
 
     protected $casts = [
@@ -45,7 +45,7 @@ class Order extends Model
             ->withTimestamps()
             ->withPivot([
                 'count',
-                'price'
+                'price',
             ]);
     }
 

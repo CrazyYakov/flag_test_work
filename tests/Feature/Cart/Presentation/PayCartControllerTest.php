@@ -22,7 +22,7 @@ class PayCartControllerTest extends TestCase
 
         $cart->products()->attach($product, [
             'price' => $product->price,
-            'count' => 1
+            'count' => 1,
         ]);
 
         $token = $user->createToken('test_api')->plainTextToken;
@@ -35,11 +35,11 @@ class PayCartControllerTest extends TestCase
             ->assertOk();
 
         $this->assertDatabaseMissing('carts', [
-            'id' => $cart->id
+            'id' => $cart->id,
         ]);
 
         $this->assertDatabaseHas('orders', [
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
     }
 
@@ -50,7 +50,7 @@ class PayCartControllerTest extends TestCase
                 'alpha_bank',
             ],
             [
-                'beta_bank'
+                'beta_bank',
             ],
         ];
     }

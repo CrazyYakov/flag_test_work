@@ -13,7 +13,7 @@ class AuthorizationTest extends TestCase
 
         $response = $this->postJson('/api/auth/authorization', [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertOk();

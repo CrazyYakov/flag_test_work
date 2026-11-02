@@ -10,11 +10,11 @@ return [
     'methods' => [
         'alpha_bank' => [
             'class' => AlphaBank::class,
-            'title' => 'Alpha Bank'
+            'title' => 'Alpha Bank',
         ],
         'beta_bank' => [
             'class' => BetaBank::class,
-            'title' => 'Beta Bank'
+            'title' => 'Beta Bank',
         ],
-    ]
+    ],
 ];

@@ -22,5 +22,5 @@ return [
             'token_key' => env('BETA_BANK_PAYMENT_TOKEN_KEY'),
             'alg' => 'HS256',
         ],
-    ]
+    ],
 ];

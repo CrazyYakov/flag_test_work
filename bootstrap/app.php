@@ -9,8 +9,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        api: __DIR__.'/../routes/api.php',
-        commands: __DIR__.'/../routes/console.php',
+        api: __DIR__ . '/../routes/api.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -23,13 +23,13 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $exceptions->render(function (NotFoundHttpException $e) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 404);
         });
 
         $exceptions->render(function (ModelNotFoundException $exception) {
             return response()->json([
-                'message' => $exception->getMessage()
+                'message' => $exception->getMessage(),
             ], 404);
         });
     })

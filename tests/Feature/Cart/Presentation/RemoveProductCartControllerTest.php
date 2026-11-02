@@ -16,7 +16,7 @@ class RemoveProductCartControllerTest extends TestCase
 
         $cart->products()->attach($product, [
             'price' => $product->price,
-            'count' => 1
+            'count' => 1,
         ]);
 
         $token = $user->createToken('test_api')->plainTextToken;

@@ -18,7 +18,8 @@ use Marketplace\Auth\Infrastructure\Observers\UserObserver;
 #[ObservedBy(UserObserver::class)]
 class User extends Authenticatable
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

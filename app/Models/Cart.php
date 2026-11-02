@@ -30,7 +30,7 @@ class Cart extends Model
             ->withTimestamps()
             ->withPivot([
                 'count',
-                'price'
+                'price',
             ]);
     }
 }
