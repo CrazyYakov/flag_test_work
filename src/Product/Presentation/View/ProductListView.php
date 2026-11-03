@@ -29,7 +29,7 @@ use OpenApi\Attributes\Schema;
         new Property(
             property: 'price',
             type: 'float'
-        )
+        ),
     ]
 )]
 class ProductListView implements Arrayable

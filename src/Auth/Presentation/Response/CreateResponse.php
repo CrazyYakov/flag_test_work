@@ -21,7 +21,7 @@ class CreateResponse implements Responsable
     {
         return response()->json([
             'status' => 'success',
-            'data' => $this->data->toArray(),
+            'data' => $this->data?->toArray(),
         ], Response::HTTP_CREATED);
     }
 }

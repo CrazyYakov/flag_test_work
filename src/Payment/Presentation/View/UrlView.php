@@ -17,7 +17,7 @@ use OpenApi\Attributes\Schema;
         new Property(
             property: 'url',
             type: 'string',
-        )
+        ),
     ]
 )]
 class UrlView implements Arrayable

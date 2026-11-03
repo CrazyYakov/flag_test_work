@@ -49,7 +49,7 @@ readonly class IndexProductController
                 in: 'query',
                 required: false,
                 schema: new Schema(type: 'string')
-            )
+            ),
         ],
         responses: [
             new Response(
