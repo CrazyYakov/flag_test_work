@@ -24,6 +24,9 @@ class IndexProductCartController
         tags: ['Cart'],
         summary: 'Получение содержимого корзины пользователя',
         description: 'Возвращает список товаров в корзине текущего авторизованного пользователя.',
+        security: [
+            ['sanctum' => []],
+        ],
         responses: [
             new OA\Response(
                 response: 200,

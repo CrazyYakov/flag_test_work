@@ -23,6 +23,9 @@ class RemoveProductCartController
         tags: ['Cart'],
         summary: 'Удаление товара из корзины',
         description: 'Удаляет товар по его ID из корзины текущего авторизованного пользователя.',
+        security: [
+            ['sanctum' => []],
+        ],
         parameters: [
             new OA\Parameter(
                 name: 'id',

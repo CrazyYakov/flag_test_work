@@ -23,6 +23,9 @@ class StoreProductCartController
         tags: ['Cart'],
         summary: 'Добавление товара в корзину',
         description: 'Добавляет товар по его ID в корзину текущего авторизованного пользователя.',
+        security: [
+            ['sanctum' => []],
+        ],
         parameters: [
             new OA\Parameter(
                 name: 'id',

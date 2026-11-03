@@ -27,6 +27,9 @@ readonly class IndexOrderController
         tags: ['Order'],
         summary: 'Получение списка заказов',
         description: 'Возвращает список заказов с фильтрацией по статусу и сортировкой по дате создания.',
+        security: [
+            ['sanctum' => []],
+        ],
         parameters: [
             new OA\Parameter(
                 name: 'filter_status',

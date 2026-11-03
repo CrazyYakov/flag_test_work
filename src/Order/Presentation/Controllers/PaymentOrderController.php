@@ -22,6 +22,9 @@ class PaymentOrderController
         tags: ['Order'],
         summary: 'Отметка заказа как оплаченного',
         description: 'Устанавливает заказу статус PAID (2).',
+        security: [
+            ['sanctum' => []],
+        ],
         parameters: [
             new OA\Parameter(
                 name: 'id',

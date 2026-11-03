@@ -24,6 +24,9 @@ class PayCartController
         tags: ['Cart'],
         summary: 'Оплата корзины',
         description: 'Создаёт заказ из содержимого корзины, генерирует платёжную ссылку выбранного способа оплаты и очищает корзину.',
+        security: [
+            ['sanctum' => []],
+        ],
         parameters: [
             new OA\Parameter(
                 name: 'paymentMethodId',
