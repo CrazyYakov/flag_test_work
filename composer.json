@@ -12,9 +12,12 @@
         "php": "^8.2",
         "darkaonline/l5-swagger": "^9.0",
         "firebase/php-jwt": "^6.10",
+        "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
+        "laravel/scout": "^11.9",
         "laravel/tinker": "^2.9",
+        "meilisearch/meilisearch-php": "^1.17",
         "php-cs-fixer/shim": "^3.95"
     },
     "require-dev": {
@@ -25,6 +28,7 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
+        "phpstan/phpstan-mockery": "^2.0",
         "phpunit/phpunit": "^11.0.1"
     },
     "autoload": {
