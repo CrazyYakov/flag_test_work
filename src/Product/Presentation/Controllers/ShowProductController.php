@@ -47,11 +47,7 @@ readonly class ShowProductController
                         new Property(
                             property: 'data',
                             type: 'object',
-                            properties: [
-                                new Property(property: 'id', type: 'integer', example: 1),
-                                new Property(property: 'title', type: 'string', example: 'Product Name'),
-                                new Property(property: 'price', type: 'number', format: 'float', example: 100.50),
-                            ],
+                            ref: ProductView::class
                         ),
                     ],
                 ),

@@ -27,7 +27,8 @@ readonly class IndexProductController
     public function __construct(
         private ProductFilterFactory $productFilterFactory,
         private ProductRepositoryContract $productRepository,
-    ) {}
+    ) {
+    }
 
 
     #[Get(
@@ -50,6 +51,13 @@ readonly class IndexProductController
                 required: false,
                 schema: new Schema(type: 'string')
             ),
+            new Parameter(
+                parameter: 'search',
+                name: 'search',
+                in: 'query',
+                required: false,
+                schema: new Schema(type: 'string')
+            ),
         ],
         responses: [
             new Response(
@@ -62,12 +70,7 @@ readonly class IndexProductController
                             property: 'data',
                             type: 'array',
                             items: new Items(
-                                type: 'object',
-                                properties: [
-                                    new Property(property: 'id', type: 'integer', example: 1),
-                                    new Property(property: 'title', type: 'string', example: 'Product Name'),
-                                    new Property(property: 'price', type: 'number', format: 'float', example: 100.50),
-                                ],
+                                ref: ProductListView::class,
                             ),
                         ),
                     ],

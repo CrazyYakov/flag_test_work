@@ -16,7 +16,6 @@ use OpenApi\Attributes\Schema;
  */
 #[Schema(
     schema: 'productListView',
-    type: 'properties',
     properties: [
         new Property(
             property: 'id',
