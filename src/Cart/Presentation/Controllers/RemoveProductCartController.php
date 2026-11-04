@@ -18,7 +18,7 @@ class RemoveProductCartController
     ) {}
 
     #[OA\Delete(
-        path: '/api/cart/{id}',
+        path: '/api/carts/{id}',
         operationId: 'removeProductFromCart',
         tags: ['Cart'],
         summary: 'Удаление товара из корзины',
