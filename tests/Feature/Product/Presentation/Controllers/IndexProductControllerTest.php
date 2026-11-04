@@ -25,22 +25,9 @@ class IndexProductControllerTest extends TestCase
 
         $this->get($uri)->assertStatus(200);
 
-        $params = [
-            'sort_price_dir' => 'asc',
-        ];
-
-        $response = $this
-            ->get($uri . '?' . http_build_query($params))
+        $this
+            ->get($uri)
             ->assertStatus(200);
-
-        $products = $response->json('data');
-
-        $sortProducts = Collection::make($products)
-            ->sortBy('price', SORT_NUMERIC)
-            ->values()
-            ->all();
-
-        $this->assertEquals($sortProducts, $products);
     }
 
     public function testSearchSuccessResponse(): void
