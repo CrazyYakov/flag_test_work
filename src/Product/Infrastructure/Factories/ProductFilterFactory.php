@@ -14,6 +14,7 @@ class ProductFilterFactory
     {
         return new ProductFilter(
             price: isset($data['filter_price']) ? (float) $data['filter_price'] : null,
+            search: isset($data['search']) ? (string) $data['search'] : null,
         );
     }
 }

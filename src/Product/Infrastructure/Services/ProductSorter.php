@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Marketplace\Product\Infrastructure\Services;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Marketplace\Product\Core\Ports\SorterContract;
 
 readonly class ProductSorter implements SorterContract
@@ -14,8 +13,16 @@ readonly class ProductSorter implements SorterContract
         private ?string            $direction,
     ) {}
 
-    public function apply(Builder $builder): Builder
+    public function apply(): array
     {
-        return $builder->orderBy($this->name->value, $this->direction ?? 'asc');
+        if ($this->direction === null) {
+            return [];
+        }
+
+        return [
+            'sort' => [
+                $this->name->value . ':' . $this->direction,
+            ],
+        ];
     }
 }

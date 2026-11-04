@@ -21,11 +21,14 @@ class ProductFilterRequest extends FormRequest
     {
         return [
             'filter_price' => [
-                'float',
+                'numeric',
             ],
             'sort_price_dir' => [
                 'string',
                 Rule::in(['asc', 'desc']),
+            ],
+            'search' => [
+                'string',
             ],
         ];
     }
