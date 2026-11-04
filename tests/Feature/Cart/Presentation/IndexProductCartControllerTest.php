@@ -15,7 +15,7 @@ class IndexProductCartControllerTest extends TestCase
         $token = $user->createToken('test_api')->plainTextToken;
 
         $this->withToken($token)
-            ->getJson('/api/cart')
+            ->getJson('/api/carts')
             ->assertOk();
     }
 }

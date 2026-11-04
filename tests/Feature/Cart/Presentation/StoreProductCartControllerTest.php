@@ -16,7 +16,7 @@ class StoreProductCartControllerTest extends TestCase
 
         $this->withToken($token);
 
-        $response = $this->postJson('/api/cart/' . $product->getKey());
+        $response = $this->postJson('/api/carts/' . $product->getKey());
 
         $response->assertStatus(200);
     }

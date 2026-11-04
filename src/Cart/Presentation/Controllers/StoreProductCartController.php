@@ -18,7 +18,7 @@ class StoreProductCartController
     ) {}
 
     #[OA\Post(
-        path: '/api/cart/{id}',
+        path: '/api/carts/{id}',
         operationId: 'addProductToCart',
         tags: ['Cart'],
         summary: 'Добавление товара в корзину',

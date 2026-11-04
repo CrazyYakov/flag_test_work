@@ -19,7 +19,7 @@ class PayCartController
     ) {}
 
     #[OA\Post(
-        path: '/api/cart/pay/{paymentMethodId}',
+        path: '/api/carts/pay/{paymentMethodId}',
         operationId: 'payCart',
         tags: ['Cart'],
         summary: 'Оплата корзины',

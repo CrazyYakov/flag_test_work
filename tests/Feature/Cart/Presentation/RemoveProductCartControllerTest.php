@@ -23,7 +23,7 @@ class RemoveProductCartControllerTest extends TestCase
 
         $this->withToken($token);
 
-        $this->delete('/api/cart/' . $product->getKey())->assertOk();
+        $this->delete('/api/carts/' . $product->getKey())->assertOk();
 
         $this->assertDatabaseMissing('carts_products', [
             'product_id' => $product->getKey(),

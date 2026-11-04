@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/auth')
     ->group(base_path('routes/v1/auth.php'));
 
-Route::prefix('/cart')
+Route::prefix('/carts')
     ->middleware('auth:sanctum')
-    ->group(base_path('routes/v1/cart.php'));
+    ->group(base_path('routes/v1/carts.php'));
 
 Route::prefix('/products')
     ->group(base_path('routes/v1/products.php'));

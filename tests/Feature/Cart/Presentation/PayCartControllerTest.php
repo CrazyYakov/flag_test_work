@@ -32,7 +32,7 @@ class PayCartControllerTest extends TestCase
             ->getKey();
 
         $this->withToken($token)
-            ->postJson('/api/cart/pay/' . $paymentMethodId)
+            ->postJson('/api/carts/pay/' . $paymentMethodId)
             ->assertOk();
 
         $this->assertDatabaseMissing('carts', [
