@@ -27,8 +27,7 @@ readonly class IndexProductController
     public function __construct(
         private ProductFilterFactory $productFilterFactory,
         private ProductRepositoryContract $productRepository,
-    ) {
-    }
+    ) {}
 
 
     #[Get(
