@@ -18,6 +18,7 @@ Marketplace API
 - Тестирование: PHP Unit, функциональные тесты.
 - Статический анализ: PHPStan (Level 8), PHP CS Fixer.
 - Мониторинг базы данных Grafana.
+- Поисковик Meilisearch 1+.
 
 # 🏗 Архитектура
 
