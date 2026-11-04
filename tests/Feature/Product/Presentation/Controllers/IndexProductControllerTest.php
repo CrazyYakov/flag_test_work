@@ -6,6 +6,7 @@ namespace Tests\Feature\Product\Presentation\Controllers;
 
 use App\Models\Product;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Marketplace\Product\Core\Ports\FilterContract;
 use Marketplace\Product\Core\Ports\ProductRepositoryContract;
 use Marketplace\Product\Core\Ports\SorterContract;
@@ -34,9 +35,12 @@ class IndexProductControllerTest extends TestCase
 
         $products = $response->json('data');
 
-        $sortProducts = Arr::sort($products, 'price');
+        $sortProducts = Collection::make($products)
+            ->sortBy('price', SORT_NUMERIC)
+            ->values()
+            ->all();
 
-        $this->assertEquals(array_values($sortProducts), $products);
+        $this->assertEquals($sortProducts, $products);
     }
 
     public function testSearchSuccessResponse(): void
