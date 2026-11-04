@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tests\Feature\Product\Presentation\Controllers;
 
 use App\Models\Product;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Marketplace\Product\Core\Ports\FilterContract;
 use Marketplace\Product\Core\Ports\ProductRepositoryContract;
 use Marketplace\Product\Core\Ports\SorterContract;
