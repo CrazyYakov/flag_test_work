@@ -63,6 +63,25 @@ services:
       interval: 5s
       timeout: 3s
       retries: 20
+  meilisearch:
+    container_name: ${DOCKER_CONTAINER_NAME}_MEILISEARCH
+    tty: true
+    image: getmeili/meilisearch:v1.11
+    restart: unless-stopped
+    environment:
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - ./containers/data/meilisearch:/meili_data
+    ports:
+      - ${DOCKER_PUBLIC_MEILISEARCH_PORT}:7700
+    networks:
+      - app
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:7700/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
   grafana:
     container_name: ${DOCKER_CONTAINER_NAME}_GRAFANA
     tty: true
