@@ -1,7 +1,4 @@
-# Тестовое задание
-
-Это тестовое задание написана для кампании "Студия Флаг".
-REST-api для онлайн магазина.
+# Orders Server
 
 # Описание
 
@@ -28,7 +25,7 @@ Marketplace API
 app/
 ├── Core
 |   ├── Application/     # Сервисы приложения, Use Cases (сценарии), DTO
-|   ├── Domain/          # Сущности (Entities), Объекты значения (Value Objects), Агрегаты
+|   └── Domain/          # Сущности (Entities), Объекты значения (Value Objects), Агрегаты
 ├── Infrastructure/  # Реализация репозиториев, кэширования, внешние API
 └── Presentation/    # Контроллеры, API Resources, Middleware
 ```
