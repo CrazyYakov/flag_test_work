@@ -1,114 +1,132 @@
 services:
-  app:
-    container_name: ${DOCKER_CONTAINER_NAME}_APP
-    build:
-      context: docker/local/app
-      args:
-        - USER_ID=${DOCKER_USER_ID}
-        - GROUP_ID=${DOCKER_GROUP_ID}
-        - PHP_VERSION=${DOCKER_PHP_VERSION}
-    restart: on-failure
-    working_dir: /var/www/app
-    tty: true
-    volumes:
-      - ./:/var/www/app
-    networks:
-      - app
-    depends_on:
-      - database
-  database:
-    container_name: ${DOCKER_CONTAINER_NAME}_DATABASE
-    tty: true
-    image: postgres:18-alpine
-    restart: always
-    environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - ./containers/data/database:/var/lib/postgresql
-    ports:
-      - ${DOCKER_PUBLIC_DB_PORT}:5432
-    networks:
-      - app
-    command: [ "postgres", "-c", "log_statement=all", "-c", "log_destination=stderr" ]
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${DB_USERNAME}", "-d", "${DB_DATABASE}" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  server:
-    container_name: ${DOCKER_CONTAINER_NAME}_SERVER
-    tty: true
-    image: nginx:1-alpine
-    restart: on-failure
-    depends_on:
-      - app
-    ports:
-      - ${DOCKER_PUBLIC_SERVER_PORT}:80
-    volumes:
-      - ./:/var/www/app
-      - ./containers/logs/server/:/var/log/nginx/
-      - ./docker/local/nginx/:/etc/nginx/conf.d/
-    networks:
-      - app
-  cache:
-    container_name: ${DOCKER_CONTAINER_NAME}-redis
-    image: redis:7-alpine
-    restart: unless-stopped
-    volumes:
-      - ./containers/data/cache:/data
-    healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
-      interval: 5s
-      timeout: 3s
-      retries: 20
-  meilisearch:
-    container_name: ${DOCKER_CONTAINER_NAME}_MEILISEARCH
-    tty: true
-    image: getmeili/meilisearch:v1.11
-    restart: unless-stopped
-    environment:
-      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
-      MEILI_NO_ANALYTICS: "true"
-    volumes:
-      - ./containers/data/meilisearch:/meili_data
-    ports:
-      - ${DOCKER_PUBLIC_MEILISEARCH_PORT}:7700
-    networks:
-      - app
-    healthcheck:
-      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:7700/health" ]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-  grafana:
-    container_name: ${DOCKER_CONTAINER_NAME}_GRAFANA
-    tty: true
-    image: grafana/grafana:11.3.0
-    # Bind-mounted data dir (created by Docker as root) is not writable
-    # by the image's default "grafana" (472) user.
-    user: root
-    restart: unless-stopped
-    depends_on:
-      - database
-    environment:
-      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
-      # Used by the datasource provisioning (docker/local/grafana/provisioning)
-      DB_DATABASE: ${DB_DATABASE}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - ./containers/data/grafana:/var/lib/grafana
-      - ./docker/local/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-    ports:
-      - ${DOCKER_PUBLIC_GRAFANA_PORT}:3000
-    networks:
-      - app
+    app:
+        container_name: ${DOCKER_CONTAINER_NAME}_APP
+        build:
+            context: docker/local/app
+            args:
+                - USER_ID=${DOCKER_USER_ID}
+                - GROUP_ID=${DOCKER_GROUP_ID}
+                - PHP_VERSION=${DOCKER_PHP_VERSION}
+        restart: on-failure
+        working_dir: /var/www/app
+        tty: true
+        volumes:
+            - ./:/var/www/app
+        networks:
+            - app
+        depends_on:
+            - database
+    database:
+        container_name: ${DOCKER_CONTAINER_NAME}_DATABASE
+        tty: true
+        image: postgres:18-alpine
+        restart: always
+        environment:
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - ./containers/data/database:/var/lib/postgresql
+        ports:
+            - ${DOCKER_PUBLIC_DB_PORT}:5432
+        networks:
+            - app
+        command: [ "postgres", "-c", "log_statement=all", "-c", "log_destination=stderr" ]
+        healthcheck:
+            test: [ "CMD", "pg_isready", "-U", "${DB_USERNAME}", "-d", "${DB_DATABASE}" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+    server:
+        container_name: ${DOCKER_CONTAINER_NAME}_SERVER
+        tty: true
+        image: nginx:1-alpine
+        restart: on-failure
+        depends_on:
+            - app
+        ports:
+            - ${DOCKER_PUBLIC_SERVER_PORT}:80
+        volumes:
+            - ./:/var/www/app
+            - ./containers/logs/server/:/var/log/nginx/
+            - ./docker/local/nginx/:/etc/nginx/conf.d/
+        networks:
+            - app
+    cache:
+        container_name: ${DOCKER_CONTAINER_NAME}-redis
+        image: redis:7-alpine
+        restart: unless-stopped
+        volumes:
+            - ./containers/data/cache:/data
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            interval: 5s
+            timeout: 3s
+            retries: 20
+    meilisearch:
+        container_name: ${DOCKER_CONTAINER_NAME}_MEILISEARCH
+        tty: true
+        image: getmeili/meilisearch:v1.11
+        restart: unless-stopped
+        environment:
+            MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+            MEILI_NO_ANALYTICS: "true"
+        volumes:
+            - ./containers/data/meilisearch:/meili_data
+        ports:
+            - ${DOCKER_PUBLIC_MEILISEARCH_PORT}:7700
+        networks:
+            - app
+        healthcheck:
+            test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:7700/health" ]
+            interval: 10s
+            timeout: 5s
+            retries: 10
+    grafana:
+        container_name: ${DOCKER_CONTAINER_NAME}_GRAFANA
+        tty: true
+        image: grafana/grafana:11.3.0
+        # Bind-mounted data dir (created by Docker as root) is not writable
+        # by the image's default "grafana" (472) user.
+        user: root
+        restart: unless-stopped
+        depends_on:
+            - database
+        environment:
+            GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
+            GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+            # Used by the datasource provisioning (docker/local/grafana/provisioning)
+            DB_DATABASE: ${DB_DATABASE}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - ./containers/data/grafana:/var/lib/grafana
+            - ./docker/local/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+        ports:
+            - ${DOCKER_PUBLIC_GRAFANA_PORT}:3000
+        networks:
+            - app
+    schedule:
+        container_name: ${DOCKER_CONTAINER_NAME}_SCHEDULE
+        build:
+            context: docker/local/schedule
+            args:
+                - USER_ID=${DOCKER_USER_ID}
+                - GROUP_ID=${DOCKER_GROUP_ID}
+                - PHP_VERSION=${DOCKER_PHP_VERSION}
+        restart: on-failure
+        working_dir: /var/www/app
+        command: ["php", "artisan", "schedule:work"]
+        volumes:
+            - ./:/var/www/app
+        networks:
+            - app
+        depends_on:
+            - database
+
 networks:
-  app:
-    driver: bridge
+    app:
+        driver: bridge
 volumes:
     database:
     cache:
