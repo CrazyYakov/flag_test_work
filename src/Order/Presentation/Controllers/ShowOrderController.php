@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Marketplace\Order\Presentation\Controllers;
 
 use Illuminate\Contracts\Support\Responsable;
+use Marketplace\Auth\Presentation\Response\SuccessResponse;
 use Marketplace\Order\Core\Ports\OrderRepositoryContract;
 use Marketplace\Order\Presentation\Resources\OrderResource;
+use Marketplace\Order\Presentation\View\OrderView;
 use OpenApi\Attributes as OA;
 
 #[OA\Tag(name: 'Order')]
@@ -86,8 +88,8 @@ readonly class ShowOrderController
     )]
     public function __invoke(int $id): Responsable
     {
-        return new OrderResource(
-            $this->orderRepository->getById($id)
+        return new SuccessResponse(
+            new OrderView($this->orderRepository->getById($id))
         );
     }
 }

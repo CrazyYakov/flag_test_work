@@ -69,7 +69,7 @@ class OrderManager implements OrderManagerContract
     public function cancelExpiredOrders(DateTimeInterface $date): void
     {
         OrderModel::query()
-            ->whereDate('created_at', "<", $date)
+            ->where('created_at', "<", $date)
             ->where('status', OrderStatusEnum::ON_PAYMENT)
             ->update([
                 'status' => OrderStatusEnum::CANCELED,

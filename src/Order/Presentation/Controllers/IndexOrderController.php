@@ -11,6 +11,8 @@ use Marketplace\Order\Infrastructure\Services\OrderSorter;
 use Marketplace\Order\Infrastructure\Services\OrderSorterEnum;
 use Marketplace\Order\Presentation\Requests\IndexRequest;
 use Marketplace\Order\Presentation\Resources\OrderResource;
+use Marketplace\Order\Presentation\Response\SuccessResponse;
+use Marketplace\Order\Presentation\View\OrderListView;
 use OpenApi\Attributes as OA;
 
 #[OA\Tag(name: 'Order')]
@@ -54,28 +56,7 @@ readonly class IndexOrderController
                     properties: [
                         new OA\Property(
                             property: 'data',
-                            type: 'array',
-                            items: new OA\Items(
-                                type: 'object',
-                                properties: [
-                                    new OA\Property(property: 'id', type: 'integer', description: 'ID заказа', example: 1),
-                                    new OA\Property(property: 'full_price', type: 'number', format: 'float', description: 'Итоговая стоимость заказа', example: 1999.98),
-                                    new OA\Property(property: 'count', type: 'integer', description: 'Общее количество товаров в заказе', example: 2),
-                                    new OA\Property(
-                                        property: 'products',
-                                        type: 'array',
-                                        items: new OA\Items(
-                                            type: 'object',
-                                            properties: [
-                                                new OA\Property(property: 'id', type: 'string', description: 'ID товара', example: '1'),
-                                                new OA\Property(property: 'title', type: 'string', example: 'iPhone 15'),
-                                                new OA\Property(property: 'price', type: 'number', format: 'float', description: 'Цена из резерва', example: 999.99),
-                                                new OA\Property(property: 'quantity', type: 'integer', description: 'Количество в заказе', example: 2),
-                                            ],
-                                        ),
-                                    ),
-                                ],
-                            ),
+                            ref: OrderListView::class,
                         ),
                         new OA\Property(property: 'message', type: 'string', example: 'order'),
                         new OA\Property(property: 'status', type: 'string', example: 'success'),
@@ -120,6 +101,8 @@ readonly class IndexOrderController
             )
         );
 
-        return OrderResource::collection($orders);
+        return new SuccessResponse(
+            new OrderListView($orders)
+        );
     }
 }

@@ -11,13 +11,11 @@ use Marketplace\Order\Core\Ports\FilterContract;
 readonly class OrderFilter implements FilterContract
 {
     public function __construct(
-        private OrderStatusEnum $status,
+        private ?OrderStatusEnum $status,
     ) {}
 
     public function apply(Builder $builder): Builder
     {
-        return $builder->whereHas('status', function (Builder $builder) {
-            $builder->where('slug', $this->status->value);
-        });
+        return $builder->when($this->status, fn(Builder $query) => $query->where('status', $this->status));
     }
 }
